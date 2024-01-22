@@ -40,6 +40,8 @@ import be.aminmousavi.cocktailsapp.ui.utils.Logo
 
 @Composable
 fun HomeScreen(
+    clickableCardOptions: List<DataSource.ClickableCardOption>,
+    onClickableCardClicked: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -53,7 +55,7 @@ fun HomeScreen(
                 val option = clickableCardOptions[index]
                 ClickableCard(
                     labelResId = option.labelResId,
-                    onClick = { /* Handle click action for the specific card */ }
+                    onClick = { onClickableCardClicked(option.labelResId) }
                 )
             }
         }
@@ -85,14 +87,14 @@ fun ClickableCard(
         }
     }
 }
+
 @Composable
 @Preview(showBackground = true)
 fun HomeScreenPreview() {
     CocktailsAppTheme {
         HomeScreen(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp)
+            clickableCardOptions = DataSource.clickableCardOptions,
+            onClickableCardClicked = {}
         )
     }
 }

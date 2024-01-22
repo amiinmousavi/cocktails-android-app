@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">CocktailsApp</string>
     <string name="logo_png">logo.png</string>
+
+    <string name="non_alcoholic">Non Alcoholic</string>
+    <string name="random_drink">Random Drink</string>
+    <string name="shake">Shake</string>
+    <string name="coffee">Coffee</string>
+    <string name="cocktail">Cocktail</string>
+    <string name="ordinary_drink">Ordinary Drink</string>
+    <string name="scotch">Scotch</string>
+    <string name="vodka">Vodka</string>
+
+    <string name="back_button">Back button</string>
 </resources>
