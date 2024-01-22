@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -24,6 +25,7 @@ import androidx.navigation.compose.rememberNavController
 import be.aminmousavi.cocktailsapp.data.DataSource
 import be.aminmousavi.cocktailsapp.ui.drinkdetails.DrinkDetailsScreen
 import be.aminmousavi.cocktailsapp.ui.drinks.DrinksScreen
+import be.aminmousavi.cocktailsapp.ui.drinks.DrinksViewModel
 import be.aminmousavi.cocktailsapp.ui.home.HomeScreen
 
 
@@ -128,7 +130,8 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                 )
             }
             composable(route = CocktailsScreen.NonAlcoholic.name) {
-                DrinksScreen(route = "Non Alcoholic")
+                val drinksViewModel: DrinksViewModel = viewModel()
+                DrinksScreen(route = "Non Alcoholic", drinksViewModel.drinksUiState)
             }
 
             composable(route = CocktailsScreen.RandomDrink.name) {
