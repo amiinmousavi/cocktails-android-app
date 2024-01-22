@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CocktailsApp</string>
+    <string name="logo_png">logo.png</string>
 </resources>
