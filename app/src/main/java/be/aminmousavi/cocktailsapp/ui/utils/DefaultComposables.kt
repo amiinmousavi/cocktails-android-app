@@ -27,7 +27,8 @@ fun Logo(modifier: Modifier = Modifier) {
     Image(
         painter = painterResource(id = R.drawable.logo),
         contentDescription = stringResource(R.string.logo_png),
-        )
+
+    )
 }
 
 @Composable
@@ -81,11 +82,9 @@ fun DefaultPreview() {
             HeadingText("Heading Text")
             SubHeadingText(text = "Sub Heading Text")
             TitleText(text = "Title")
-            Paragraph(
-                text = "Rub the rim of the glass with the lime slice to make the salt stick to it. " +
-                        "Take care to moisten only the outer rim and sprinkle the salt on it. " +
-                        "The salt should present to the lips of the imbiber and never mix into the cocktail."
-            )
+            Paragraph(text = "Rub the rim of the glass with the lime slice to make the salt stick to it. " +
+                    "Take care to moisten only the outer rim and sprinkle the salt on it. " +
+                    "The salt should present to the lips of the imbiber and never mix into the cocktail.")
         }
     }
 }
