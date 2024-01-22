@@ -90,37 +90,37 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
             composable(route = CocktailsScreen.Home.name) {
                 HomeScreen(
                     clickableCardOptions = DataSource.clickableCardOptions,
-                    onClickableCardClicked = {
+                    onClickableCardClicked = {route ->
                         when (route) {
-                            CocktailsScreen.NonAlcoholic.title.toString() -> {
+                            CocktailsScreen.NonAlcoholic.title -> {
                                 navController.navigate(CocktailsScreen.NonAlcoholic.name)
                             }
 
-                            CocktailsScreen.RandomDrink.name -> {
+                            CocktailsScreen.RandomDrink.title -> {
                                 navController.navigate(CocktailsScreen.RandomDrink.name)
                             }
 
-                            CocktailsScreen.Shake.name -> {
+                            CocktailsScreen.Shake.title -> {
                                 navController.navigate(CocktailsScreen.Shake.name)
                             }
 
-                            CocktailsScreen.Coffee.name -> {
+                            CocktailsScreen.Coffee.title -> {
                                 navController.navigate(CocktailsScreen.Coffee.name)
                             }
 
-                            CocktailsScreen.Cocktail.name -> {
+                            CocktailsScreen.Cocktail.title -> {
                                 navController.navigate(CocktailsScreen.Cocktail.name)
                             }
 
-                            CocktailsScreen.OrdinaryDrink.name -> {
+                            CocktailsScreen.OrdinaryDrink.title -> {
                                 navController.navigate(CocktailsScreen.OrdinaryDrink.name)
                             }
 
-                            CocktailsScreen.Scotch.name -> {
+                            CocktailsScreen.Scotch.title -> {
                                 navController.navigate(CocktailsScreen.Scotch.name)
                             }
 
-                            CocktailsScreen.Vodka.name -> {
+                            else -> {
                                 navController.navigate(CocktailsScreen.Vodka.name)
                             }
                         }
