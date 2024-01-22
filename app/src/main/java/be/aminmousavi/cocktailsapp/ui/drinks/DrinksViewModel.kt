@@ -1,4 +1,6 @@
 package be.aminmousavi.cocktailsapp.ui.drinks
 
-class DrinksViewModel {
+import androidx.lifecycle.ViewModel
+
+class DrinksViewModel(): ViewModel() {
 }
