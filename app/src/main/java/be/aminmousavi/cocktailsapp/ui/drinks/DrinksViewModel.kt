@@ -7,9 +7,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import be.aminmousavi.cocktailsapp.network.DrinksApi
 import kotlinx.coroutines.launch
+import java.io.IOException
+    sealed interface DrinksUiState {
+        data class Success(val drinks: String) : DrinksUiState
+        object Error : DrinksUiState
+        object Loading : DrinksUiState
+    }
 
 class DrinksViewModel(): ViewModel() {
-    var drinksUiState: String by mutableStateOf("")
+    var drinksUiState: DrinksUiState by mutableStateOf(DrinksUiState.Loading)
         private set
 
     init {
@@ -18,8 +24,12 @@ class DrinksViewModel(): ViewModel() {
 
     private fun getDrinks() {
         viewModelScope.launch {
-            val listResult = DrinksApi.retrofitService.getNonAlcoholicDrinks()
-            drinksUiState = listResult
+            try {
+                val listResult = DrinksApi.retrofitService.getNonAlcoholicDrinks()
+                drinksUiState = DrinksUiState.Success(listResult)
+            } catch (e: IOException) {
+                drinksUiState = DrinksUiState.Error
+            }
         }
     }
 }
