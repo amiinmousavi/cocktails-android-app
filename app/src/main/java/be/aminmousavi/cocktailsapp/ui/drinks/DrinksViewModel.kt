@@ -11,11 +11,12 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import be.aminmousavi.cocktailsapp.DrinksApplication
 import be.aminmousavi.cocktailsapp.data.DrinksRepository
+import be.aminmousavi.cocktailsapp.network.Drink
 import kotlinx.coroutines.launch
 import java.io.IOException
 
 sealed interface DrinksUiState {
-    data class Success(val drinks: String) : DrinksUiState
+    data class Success(val drinks: List<Drink>) : DrinksUiState
     object Error : DrinksUiState
     object Loading : DrinksUiState
 }
@@ -32,8 +33,8 @@ class DrinksViewModel(private val drinksRepository: DrinksRepository) : ViewMode
         viewModelScope.launch {
             try {
                 val listResult = drinksRepository.getNonAlcoholicDrinks()
-                drinksUiState =
-                    DrinksUiState.Success("Success: ${listResult.drinks.size} drinks retrieved.")
+                val drinks = listResult.drinks
+                drinksUiState = DrinksUiState.Success(drinks)
             } catch (e: IOException) {
                 drinksUiState = DrinksUiState.Error
             }
