@@ -92,7 +92,7 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
             composable(route = CocktailsScreen.Home.name) {
                 HomeScreen(
                     clickableCardOptions = DataSource.clickableCardOptions,
-                    onClickableCardClicked = {route ->
+                    onClickableCardClicked = { route ->
                         when (route) {
                             CocktailsScreen.NonAlcoholic.title -> {
                                 navController.navigate(CocktailsScreen.NonAlcoholic.name)
@@ -130,7 +130,7 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                 )
             }
             composable(route = CocktailsScreen.NonAlcoholic.name) {
-                val drinksViewModel: DrinksViewModel = viewModel()
+                val drinksViewModel: DrinksViewModel = viewModel(factory = DrinksViewModel.Factory)
                 DrinksScreen(route = "Non Alcoholic", drinksViewModel.drinksUiState)
             }
 
