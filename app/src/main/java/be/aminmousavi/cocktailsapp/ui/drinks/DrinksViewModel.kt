@@ -26,7 +26,7 @@ class DrinksViewModel(): ViewModel() {
         viewModelScope.launch {
             try {
                 val listResult = DrinksApi.retrofitService.getNonAlcoholicDrinks()
-                drinksUiState = DrinksUiState.Success(listResult)
+                drinksUiState = DrinksUiState.Success("Success: ${listResult.drinks.size} drinks retrieved.")
             } catch (e: IOException) {
                 drinksUiState = DrinksUiState.Error
             }
