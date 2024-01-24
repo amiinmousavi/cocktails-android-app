@@ -30,11 +30,11 @@ class DrinksViewModel(private val drinksRepository: CocktailsRepository) : ViewM
         private set
 
     init {
-        getDrinks()
+        getDrinksByCategory()
     }
 
     @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
-    fun getDrinks() {
+    fun getDrinksByCategory() {
         viewModelScope.launch {
             try {
                 val listResult = drinksRepository.getNonAlcoholicDrinks()

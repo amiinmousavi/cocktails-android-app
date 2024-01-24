@@ -25,7 +25,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import be.aminmousavi.cocktailsapp.data.DataSource
-import be.aminmousavi.cocktailsapp.ui.drinkdetails.DrinkDetailsScreen
 import be.aminmousavi.cocktailsapp.ui.drinks.DrinksScreen
 import be.aminmousavi.cocktailsapp.ui.drinks.DrinksViewModel
 import be.aminmousavi.cocktailsapp.ui.home.HomeScreen
@@ -104,11 +103,11 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
 //                            CocktailsScreen.RandomDrink.title -> {
 //                                navController.navigate(CocktailsScreen.RandomDrink.name)
 //                            }
-//
-//                            CocktailsScreen.Shake.title -> {
-//                                navController.navigate(CocktailsScreen.Shake.name)
-//                            }
-//
+
+                            CocktailsScreen.Shake.title -> {
+                                navController.navigate(CocktailsScreen.Shake.name)
+                            }
+
 //                            CocktailsScreen.Coffee.title -> {
 //                                navController.navigate(CocktailsScreen.Coffee.name)
 //                            }
@@ -137,17 +136,18 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                 DrinksScreen(
                     route = "Non Alcoholic",
                     drinksUiState = drinksViewModel.drinksUiState,
-                    retryAction = drinksViewModel::getDrinks
+                    retryAction = drinksViewModel::getDrinksByCategory
                 )
             }
 
-            composable(route = CocktailsScreen.RandomDrink.name) {
-                DrinkDetailsScreen(route = "Random Drink")
-            }
-//
 //            composable(route = CocktailsScreen.Shake.name) {
 //                DrinksScreen(route = "Shake")
 //            }
+
+//            composable(route = CocktailsScreen.RandomDrink.name) {
+//                DrinkDetailsScreen(route = "Random Drink")
+//            }
+
 //
 //            composable(route = CocktailsScreen.Coffee.name) {
 //                DrinksScreen(route = "Coffee")
