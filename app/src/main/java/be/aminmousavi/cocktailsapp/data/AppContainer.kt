@@ -1,13 +1,13 @@
 package be.aminmousavi.cocktailsapp.data
 
-import be.aminmousavi.cocktailsapp.network.DrinksApiService
+import be.aminmousavi.cocktailsapp.network.CocktailsApiService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
 
 interface AppContainer {
-    val drinksRepository: DrinksRepository
+    val cocktailsRepository: CocktailsRepository
 }
 
 class DefaultAppContainer : AppContainer {
@@ -18,11 +18,11 @@ class DefaultAppContainer : AppContainer {
         .baseUrl(baseUrl)
         .build()
 
-    private val retrofitService: DrinksApiService by lazy {
-        retrofit.create(DrinksApiService::class.java)
+    private val retrofitService: CocktailsApiService by lazy {
+        retrofit.create(CocktailsApiService::class.java)
     }
 
-    override val drinksRepository: DrinksRepository by lazy {
-        NetworkDrinksRepository(retrofitService)
+    override val cocktailsRepository: CocktailsRepository by lazy {
+        NetworkCocktailsRepository(retrofitService)
     }
 }

@@ -4,7 +4,7 @@ import android.app.Application
 import be.aminmousavi.cocktailsapp.data.AppContainer
 import be.aminmousavi.cocktailsapp.data.DefaultAppContainer
 
-class DrinksApplication : Application() {
+class CocktailsApplication : Application() {
     lateinit var container: AppContainer
     override fun onCreate() {
         super.onCreate()

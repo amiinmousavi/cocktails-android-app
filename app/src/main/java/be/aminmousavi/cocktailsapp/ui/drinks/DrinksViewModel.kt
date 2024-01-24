@@ -12,8 +12,8 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.AP
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import be.aminmousavi.cocktailsapp.DrinksApplication
-import be.aminmousavi.cocktailsapp.data.DrinksRepository
+import be.aminmousavi.cocktailsapp.CocktailsApplication
+import be.aminmousavi.cocktailsapp.data.CocktailsRepository
 import be.aminmousavi.cocktailsapp.network.Drink
 import kotlinx.coroutines.launch
 import java.io.IOException
@@ -25,7 +25,7 @@ sealed interface DrinksUiState {
 }
 
 @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
-class DrinksViewModel(private val drinksRepository: DrinksRepository) : ViewModel() {
+class DrinksViewModel(private val drinksRepository: CocktailsRepository) : ViewModel() {
     var drinksUiState: DrinksUiState by mutableStateOf(DrinksUiState.Loading)
         private set
 
@@ -52,8 +52,8 @@ class DrinksViewModel(private val drinksRepository: DrinksRepository) : ViewMode
     companion object {
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
-                val application = (this[APPLICATION_KEY] as DrinksApplication)
-                val drinksRepository = application.container.drinksRepository
+                val application = (this[APPLICATION_KEY] as CocktailsApplication)
+                val drinksRepository = application.container.cocktailsRepository
                 DrinksViewModel(drinksRepository = drinksRepository)
             }
         }

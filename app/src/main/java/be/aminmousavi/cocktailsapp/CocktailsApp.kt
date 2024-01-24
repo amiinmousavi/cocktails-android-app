@@ -141,9 +141,9 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                 )
             }
 
-//            composable(route = CocktailsScreen.RandomDrink.name) {
-//                DrinkDetailsScreen(route = "Random Drink")
-//            }
+            composable(route = CocktailsScreen.RandomDrink.name) {
+                DrinkDetailsScreen(route = "Random Drink")
+            }
 //
 //            composable(route = CocktailsScreen.Shake.name) {
 //                DrinksScreen(route = "Shake")
