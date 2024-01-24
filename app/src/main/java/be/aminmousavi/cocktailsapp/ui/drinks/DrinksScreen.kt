@@ -1,17 +1,20 @@
 package be.aminmousavi.cocktailsapp.ui.drinks
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -19,14 +22,19 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import be.aminmousavi.cocktailsapp.R
 import be.aminmousavi.cocktailsapp.network.Drink
 import be.aminmousavi.cocktailsapp.ui.theme.CocktailsAppTheme
+import be.aminmousavi.cocktailsapp.ui.utils.HeadingText
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 
@@ -53,7 +61,7 @@ fun DrinksScreen(
 @Composable
 fun DrinksGridScreen(drinks: List<Drink>, modifier: Modifier = Modifier) {
     LazyVerticalGrid(
-        columns = GridCells.Adaptive(150.dp),
+        columns = GridCells.Adaptive(190.dp),
         modifier = modifier.fillMaxWidth(),
         contentPadding = PaddingValues(4.dp)
     ) {
@@ -63,7 +71,6 @@ fun DrinksGridScreen(drinks: List<Drink>, modifier: Modifier = Modifier) {
                 modifier = modifier
                     .padding(4.dp)
                     .fillMaxWidth()
-                    .aspectRatio(1.5f)
             )
         }
     }
@@ -71,13 +78,30 @@ fun DrinksGridScreen(drinks: List<Drink>, modifier: Modifier = Modifier) {
 
 @Composable
 fun DrinkCard(drink: Drink, modifier: Modifier = Modifier) {
-    Card(modifier = modifier, elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)) {
-        AsyncImage(
-            model = ImageRequest.Builder(context = LocalContext.current)
-                .data(drink.thumbnailUrl)
-                .build(),
-            contentDescription = stringResource(R.string.drink),
-            modifier = Modifier.fillMaxWidth()
+    Card(
+        modifier = modifier.padding(5.dp, 10.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+    ) {
+        Box(modifier = Modifier.fillMaxSize()) {
+            AsyncImage(
+                model = ImageRequest.Builder(context = LocalContext.current)
+                    .data(drink.thumbnailUrl)
+                    .build(),
+                contentDescription = stringResource(R.string.drink),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .clip(shape = RoundedCornerShape(8.dp)),
+
+            )
+        }
+        Text(
+            drink.name,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            color = Color.Black,
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Bold
         )
     }
 }
