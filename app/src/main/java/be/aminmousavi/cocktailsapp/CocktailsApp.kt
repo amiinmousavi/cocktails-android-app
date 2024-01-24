@@ -26,6 +26,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import be.aminmousavi.cocktailsapp.data.DataSource
 import be.aminmousavi.cocktailsapp.ui.drinkdetails.DrinkDetailsScreen
+import be.aminmousavi.cocktailsapp.ui.drinkdetails.DrinkDetailsViewModel
 import be.aminmousavi.cocktailsapp.ui.drinks.DrinksScreen
 import be.aminmousavi.cocktailsapp.ui.drinks.DrinksViewModel
 import be.aminmousavi.cocktailsapp.ui.home.HomeScreen
@@ -100,10 +101,10 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                             CocktailsScreen.NonAlcoholic.title -> {
                                 navController.navigate(CocktailsScreen.NonAlcoholic.name)
                             }
-//
-//                            CocktailsScreen.RandomDrink.title -> {
-//                                navController.navigate(CocktailsScreen.RandomDrink.name)
-//                            }
+
+                            CocktailsScreen.RandomDrink.title -> {
+                                navController.navigate(CocktailsScreen.RandomDrink.name)
+                            }
 //
 //                            CocktailsScreen.Shake.title -> {
 //                                navController.navigate(CocktailsScreen.Shake.name)
@@ -133,7 +134,8 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                 )
             }
             composable(route = CocktailsScreen.NonAlcoholic.name) {
-                val drinksViewModel: DrinksViewModel = viewModel(factory = DrinksViewModel.Factory)
+                val drinksViewModel: DrinksViewModel =
+                    viewModel(factory = DrinksViewModel.Factory)
                 DrinksScreen(
                     route = "Non Alcoholic",
                     drinksUiState = drinksViewModel.drinksUiState,
@@ -142,9 +144,14 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
             }
 
             composable(route = CocktailsScreen.RandomDrink.name) {
-                DrinkDetailsScreen(route = "Random Drink")
+                val drinkDetailsViewModel: DrinkDetailsViewModel =
+                    viewModel(factory = DrinkDetailsViewModel.Factory)
+                DrinkDetailsScreen(
+                    route = "Random Drink",
+                    drinkDetailsUiState = drinkDetailsViewModel.drinkDetailsUiState
+                )
             }
-//
+
 //            composable(route = CocktailsScreen.Shake.name) {
 //                DrinksScreen(route = "Shake")
 //            }
