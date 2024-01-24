@@ -1,5 +1,8 @@
 package be.aminmousavi.cocktailsapp.ui.drinks
 
+import android.net.http.HttpException
+import android.os.Build
+import androidx.annotation.RequiresExtension
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -21,6 +24,7 @@ sealed interface DrinksUiState {
     object Loading : DrinksUiState
 }
 
+@RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
 class DrinksViewModel(private val drinksRepository: DrinksRepository) : ViewModel() {
     var drinksUiState: DrinksUiState by mutableStateOf(DrinksUiState.Loading)
         private set
@@ -29,13 +33,17 @@ class DrinksViewModel(private val drinksRepository: DrinksRepository) : ViewMode
         getDrinks()
     }
 
-    private fun getDrinks() {
+    @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
+    fun getDrinks() {
         viewModelScope.launch {
             try {
                 val listResult = drinksRepository.getNonAlcoholicDrinks()
                 val drinks = listResult.drinks
                 drinksUiState = DrinksUiState.Success(drinks)
             } catch (e: IOException) {
+                drinksUiState = DrinksUiState.Error
+            }
+            catch(e: HttpException) {
                 drinksUiState = DrinksUiState.Error
             }
         }

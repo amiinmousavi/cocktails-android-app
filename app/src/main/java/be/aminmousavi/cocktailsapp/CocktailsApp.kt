@@ -1,5 +1,7 @@
 package be.aminmousavi.cocktailsapp
 
+import android.os.Build
+import androidx.annotation.RequiresExtension
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -71,6 +73,7 @@ enum class CocktailsScreen(@StringRes val title: Int) {
     Vodka(title = R.string.vodka)
 }
 
+@RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CocktailsApp(navController: NavHostController = rememberNavController()) {
@@ -97,70 +100,74 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                             CocktailsScreen.NonAlcoholic.title -> {
                                 navController.navigate(CocktailsScreen.NonAlcoholic.name)
                             }
-
-                            CocktailsScreen.RandomDrink.title -> {
-                                navController.navigate(CocktailsScreen.RandomDrink.name)
-                            }
-
-                            CocktailsScreen.Shake.title -> {
-                                navController.navigate(CocktailsScreen.Shake.name)
-                            }
-
-                            CocktailsScreen.Coffee.title -> {
-                                navController.navigate(CocktailsScreen.Coffee.name)
-                            }
-
-                            CocktailsScreen.Cocktail.title -> {
-                                navController.navigate(CocktailsScreen.Cocktail.name)
-                            }
-
-                            CocktailsScreen.OrdinaryDrink.title -> {
-                                navController.navigate(CocktailsScreen.OrdinaryDrink.name)
-                            }
-
-                            CocktailsScreen.Scotch.title -> {
-                                navController.navigate(CocktailsScreen.Scotch.name)
-                            }
-
-                            else -> {
-                                navController.navigate(CocktailsScreen.Vodka.name)
-                            }
+//
+//                            CocktailsScreen.RandomDrink.title -> {
+//                                navController.navigate(CocktailsScreen.RandomDrink.name)
+//                            }
+//
+//                            CocktailsScreen.Shake.title -> {
+//                                navController.navigate(CocktailsScreen.Shake.name)
+//                            }
+//
+//                            CocktailsScreen.Coffee.title -> {
+//                                navController.navigate(CocktailsScreen.Coffee.name)
+//                            }
+//
+//                            CocktailsScreen.Cocktail.title -> {
+//                                navController.navigate(CocktailsScreen.Cocktail.name)
+//                            }
+//
+//                            CocktailsScreen.OrdinaryDrink.title -> {
+//                                navController.navigate(CocktailsScreen.OrdinaryDrink.name)
+//                            }
+//
+//                            CocktailsScreen.Scotch.title -> {
+//                                navController.navigate(CocktailsScreen.Scotch.name)
+//                            }
+//
+//                            else -> {
+//                                navController.navigate(CocktailsScreen.Vodka.name)
+//                            }
                         }
                     }
                 )
             }
             composable(route = CocktailsScreen.NonAlcoholic.name) {
                 val drinksViewModel: DrinksViewModel = viewModel(factory = DrinksViewModel.Factory)
-                DrinksScreen(route = "Non Alcoholic", drinksViewModel.drinksUiState)
+                DrinksScreen(
+                    route = "Non Alcoholic",
+                    drinksUiState = drinksViewModel.drinksUiState,
+                    retryAction = drinksViewModel::getDrinks
+                )
             }
 
-            composable(route = CocktailsScreen.RandomDrink.name) {
-                DrinkDetailsScreen(route = "Random Drink")
-            }
-
-            composable(route = CocktailsScreen.Shake.name) {
-                DrinksScreen(route = "Shake")
-            }
-
-            composable(route = CocktailsScreen.Coffee.name) {
-                DrinksScreen(route = "Coffee")
-            }
-
-            composable(route = CocktailsScreen.Cocktail.name) {
-                DrinksScreen(route = "Cocktail")
-            }
-
-            composable(route = CocktailsScreen.OrdinaryDrink.name) {
-                DrinksScreen(route = "Ordinary Drink")
-            }
-
-            composable(route = CocktailsScreen.Scotch.name) {
-                DrinksScreen(route = "Scotch")
-            }
-
-            composable(route = CocktailsScreen.Vodka.name) {
-                DrinksScreen(route = "Vodka")
-            }
+//            composable(route = CocktailsScreen.RandomDrink.name) {
+//                DrinkDetailsScreen(route = "Random Drink")
+//            }
+//
+//            composable(route = CocktailsScreen.Shake.name) {
+//                DrinksScreen(route = "Shake")
+//            }
+//
+//            composable(route = CocktailsScreen.Coffee.name) {
+//                DrinksScreen(route = "Coffee")
+//            }
+//
+//            composable(route = CocktailsScreen.Cocktail.name) {
+//                DrinksScreen(route = "Cocktail")
+//            }
+//
+//            composable(route = CocktailsScreen.OrdinaryDrink.name) {
+//                DrinksScreen(route = "Ordinary Drink")
+//            }
+//
+//            composable(route = CocktailsScreen.Scotch.name) {
+//                DrinksScreen(route = "Scotch")
+//            }
+//
+//            composable(route = CocktailsScreen.Vodka.name) {
+//                DrinksScreen(route = "Vodka")
+//            }
 
         }
     }

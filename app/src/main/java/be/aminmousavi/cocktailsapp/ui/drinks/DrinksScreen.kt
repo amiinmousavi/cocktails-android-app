@@ -5,12 +5,16 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,7 +33,8 @@ import coil.request.ImageRequest
 @Composable
 fun DrinksScreen(
     route: String,
-    drinksUiState: DrinksUiState? = null,
+    drinksUiState: DrinksUiState,
+    retryAction: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     when (drinksUiState) {
@@ -37,15 +42,9 @@ fun DrinksScreen(
             modifier = modifier.fillMaxWidth()
         )
 
-//        is DrinksUiState.Success -> ResultScreen(
-//            drinksUiState.drinks,
-//            modifier = modifier.fillMaxWidth()
-//        )
-
-//        is DrinksUiState.Success -> DrinkCard(drink = drinksUiState.drinks, modifier = modifier)
-
         is DrinksUiState.Success -> DrinksGridScreen(drinksUiState.drinks)
         else -> ErrorScreen(
+            retryAction = retryAction,
             modifier = modifier.fillMaxWidth()
         )
     }
@@ -59,20 +58,28 @@ fun DrinksGridScreen(drinks: List<Drink>, modifier: Modifier = Modifier) {
         contentPadding = PaddingValues(4.dp)
     ) {
         items(items = drinks, key = { drink -> drink.id }) { drink ->
-            DrinkCard(drink = drink)
+            DrinkCard(
+                drink = drink,
+                modifier = modifier
+                    .padding(4.dp)
+                    .fillMaxWidth()
+                    .aspectRatio(1.5f)
+            )
         }
     }
 }
 
 @Composable
 fun DrinkCard(drink: Drink, modifier: Modifier = Modifier) {
-    AsyncImage(
-        model = ImageRequest.Builder(context = LocalContext.current)
-            .data(drink.thumbnailUrl)
-            .build(),
-        contentDescription = stringResource(R.string.drink),
-        modifier = Modifier.fillMaxWidth()
-    )
+    Card(modifier = modifier, elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)) {
+        AsyncImage(
+            model = ImageRequest.Builder(context = LocalContext.current)
+                .data(drink.thumbnailUrl)
+                .build(),
+            contentDescription = stringResource(R.string.drink),
+            modifier = Modifier.fillMaxWidth()
+        )
+    }
 }
 
 @Composable
@@ -85,7 +92,10 @@ fun LoadingScreen(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun ErrorScreen(modifier: Modifier = Modifier) {
+fun ErrorScreen(
+    retryAction: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.Center,
@@ -96,8 +106,20 @@ fun ErrorScreen(modifier: Modifier = Modifier) {
             contentDescription = stringResource(R.string.connection_error)
         )
         Text(text = stringResource(R.string.loading_failed), modifier = Modifier.padding(16.dp))
+        Button(onClick = retryAction) {
+            Text(stringResource(R.string.retry))
+        }
     }
 }
+
+@Preview(showBackground = true)
+@Composable
+fun ErrorScreenPreview() {
+    CocktailsAppTheme {
+        ErrorScreen({})
+    }
+}
+
 
 @Composable
 fun ResultScreen(muscles: String, modifier: Modifier = Modifier) {
