@@ -20,4 +20,22 @@ object DataSource {
         ClickableCardOption(labelResId = R.string.scotch, route = "scotch"),
         ClickableCardOption(labelResId = R.string.vodka, route = "vodka")
     )
+
+    val drinkDetails = DrinkDetails(
+        strDrink = "Jack Rose Cocktail",
+        strCategory = "Ordinary Drink",
+        strAlcoholic = "Alcoholic",
+        strGlass = "Cocktail Glass",
+        strDrinkThumb = "https://www.thecocktaildb.com/images/media/drink/uuqqrv1439907068.jpg",
+        dateModified = "2015-08-18 15:11:08"
+    )
 }
+
+data class DrinkDetails(
+    val strDrink: String,
+    val strCategory: String,
+    val strAlcoholic: String,
+    val strGlass: String,
+    val strDrinkThumb: String,
+    val dateModified: String
+)

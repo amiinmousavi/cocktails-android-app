@@ -100,31 +100,31 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                             CocktailsScreen.NonAlcoholic.title -> {
                                 navController.navigate(CocktailsScreen.NonAlcoholic.name)
                             }
-//
-//                            CocktailsScreen.RandomDrink.title -> {
-//                                navController.navigate(CocktailsScreen.RandomDrink.name)
-//                            }
-//
+
+                            CocktailsScreen.RandomDrink.title -> {
+                                navController.navigate(CocktailsScreen.RandomDrink.name)
+                            }
+
 //                            CocktailsScreen.Shake.title -> {
 //                                navController.navigate(CocktailsScreen.Shake.name)
 //                            }
-//
+
 //                            CocktailsScreen.Coffee.title -> {
 //                                navController.navigate(CocktailsScreen.Coffee.name)
 //                            }
-//
+
 //                            CocktailsScreen.Cocktail.title -> {
 //                                navController.navigate(CocktailsScreen.Cocktail.name)
 //                            }
-//
+
 //                            CocktailsScreen.OrdinaryDrink.title -> {
 //                                navController.navigate(CocktailsScreen.OrdinaryDrink.name)
 //                            }
-//
+
 //                            CocktailsScreen.Scotch.title -> {
 //                                navController.navigate(CocktailsScreen.Scotch.name)
 //                            }
-//
+
 //                            else -> {
 //                                navController.navigate(CocktailsScreen.Vodka.name)
 //                            }
@@ -142,29 +142,29 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
             }
 
             composable(route = CocktailsScreen.RandomDrink.name) {
-                DrinkDetailsScreen(route = "Random Drink")
+                DrinkDetailsScreen(route = "Random Drink", DataSource.drinkDetails)
             }
-//
+
 //            composable(route = CocktailsScreen.Shake.name) {
 //                DrinksScreen(route = "Shake")
 //            }
-//
+
 //            composable(route = CocktailsScreen.Coffee.name) {
 //                DrinksScreen(route = "Coffee")
 //            }
-//
+
 //            composable(route = CocktailsScreen.Cocktail.name) {
 //                DrinksScreen(route = "Cocktail")
 //            }
-//
+
 //            composable(route = CocktailsScreen.OrdinaryDrink.name) {
 //                DrinksScreen(route = "Ordinary Drink")
 //            }
-//
+
 //            composable(route = CocktailsScreen.Scotch.name) {
 //                DrinksScreen(route = "Scotch")
 //            }
-//
+
 //            composable(route = CocktailsScreen.Vodka.name) {
 //                DrinksScreen(route = "Vodka")
 //            }
