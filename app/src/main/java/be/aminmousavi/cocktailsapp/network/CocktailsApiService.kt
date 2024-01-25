@@ -7,4 +7,7 @@ interface CocktailsApiService {
 
     @GET("filter.php?c=Shake")
     suspend fun getShakes(): DrinksApiResponse
+
+    @GET("filter.php?i=Coffee")
+    suspend fun getCoffee(): DrinksApiResponse
 }

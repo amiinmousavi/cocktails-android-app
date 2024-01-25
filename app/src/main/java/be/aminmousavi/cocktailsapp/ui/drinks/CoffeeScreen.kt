@@ -8,17 +8,17 @@ import be.aminmousavi.cocktailsapp.ui.utils.ErrorScreen
 import be.aminmousavi.cocktailsapp.ui.utils.LoadingScreen
 
 @Composable
-fun NonAlcoholicDrinksScreen(
-    drinksUiState: NonAlcoholicDrinksUiState,
+fun CoffeeScreen(
+    drinksUiState: CoffeeUiState,
     retryAction: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     when (drinksUiState) {
-        is NonAlcoholicDrinksUiState.Loading -> LoadingScreen(
+        is CoffeeUiState.Loading -> LoadingScreen(
             modifier = modifier.fillMaxWidth()
         )
 
-        is NonAlcoholicDrinksUiState.Success -> DrinksGridScreen(
+        is CoffeeUiState.Success -> DrinksGridScreen(
             drinksUiState.drinks
         )
 

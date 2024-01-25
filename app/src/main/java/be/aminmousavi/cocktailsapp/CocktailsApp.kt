@@ -25,6 +25,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import be.aminmousavi.cocktailsapp.data.DataSource
+import be.aminmousavi.cocktailsapp.ui.drinks.CoffeeScreen
+import be.aminmousavi.cocktailsapp.ui.drinks.CoffeeViewModel
 import be.aminmousavi.cocktailsapp.ui.drinks.NonAlcoholicDrinksScreen
 import be.aminmousavi.cocktailsapp.ui.drinks.NonAlcoholicDrinksViewModel
 import be.aminmousavi.cocktailsapp.ui.drinks.ShakeScreen
@@ -110,9 +112,9 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                                 navController.navigate(CocktailsScreen.Shake.name)
                             }
 
-//                            CocktailsScreen.Coffee.title -> {
-//                                navController.navigate(CocktailsScreen.Coffee.name)
-//                            }
+                            CocktailsScreen.Coffee.title -> {
+                                navController.navigate(CocktailsScreen.Coffee.name)
+                            }
 
 //                            CocktailsScreen.Cocktail.title -> {
 //                                navController.navigate(CocktailsScreen.Cocktail.name)
@@ -154,9 +156,13 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
 //                DrinkDetailsScreen(route = "Random Drink")
 //            }
 
-//            composable(route = CocktailsScreen.Coffee.name) {
-//                DrinksScreen(route = "Coffee")
-//            }
+            composable(route = CocktailsScreen.Coffee.name) {
+                val coffeeViewModel: CoffeeViewModel = viewModel(factory = CoffeeViewModel.Factory)
+                CoffeeScreen(
+                    drinksUiState = coffeeViewModel.drinksUiState,
+                    retryAction = coffeeViewModel::getCoffee
+                )
+            }
 
 //            composable(route = CocktailsScreen.Cocktail.name) {
 //                DrinksScreen(route = "Cocktail")
