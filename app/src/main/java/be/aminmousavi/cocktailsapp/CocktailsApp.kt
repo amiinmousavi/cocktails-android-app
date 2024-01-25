@@ -27,6 +27,8 @@ import androidx.navigation.compose.rememberNavController
 import be.aminmousavi.cocktailsapp.data.DataSource
 import be.aminmousavi.cocktailsapp.ui.drinks.NonAlcoholicDrinksScreen
 import be.aminmousavi.cocktailsapp.ui.drinks.NonAlcoholicDrinksViewModel
+import be.aminmousavi.cocktailsapp.ui.drinks.ShakeScreen
+import be.aminmousavi.cocktailsapp.ui.drinks.ShakeViewModel
 import be.aminmousavi.cocktailsapp.ui.home.HomeScreen
 
 
@@ -132,17 +134,21 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                 )
             }
             composable(route = CocktailsScreen.NonAlcoholic.name) {
-                val nonAlcoholicDrinksViewModel: NonAlcoholicDrinksViewModel = viewModel(factory = NonAlcoholicDrinksViewModel.Factory)
+                val nonAlcoholicDrinksViewModel: NonAlcoholicDrinksViewModel =
+                    viewModel(factory = NonAlcoholicDrinksViewModel.Factory)
                 NonAlcoholicDrinksScreen(
-                    route = "Non Alcoholic",
                     drinksUiState = nonAlcoholicDrinksViewModel.drinksUiState,
                     retryAction = nonAlcoholicDrinksViewModel::getNonAlcoholicDrinks
                 )
             }
 
-//            composable(route = CocktailsScreen.Shake.name) {
-//                DrinksScreen(route = "Shake")
-//            }
+            composable(route = CocktailsScreen.Shake.name) {
+                val shakesViewModel: ShakeViewModel = viewModel(factory = ShakeViewModel.Factory)
+                ShakeScreen(
+                    drinksUiState = shakesViewModel.drinksUiState,
+                    retryAction = shakesViewModel::getShakes
+                )
+            }
 
 //            composable(route = CocktailsScreen.RandomDrink.name) {
 //                DrinkDetailsScreen(route = "Random Drink")
