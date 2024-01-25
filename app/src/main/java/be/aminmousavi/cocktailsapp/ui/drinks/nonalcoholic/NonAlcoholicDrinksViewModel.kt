@@ -1,4 +1,4 @@
-package be.aminmousavi.cocktailsapp.ui.drinks
+package be.aminmousavi.cocktailsapp.ui.drinks.nonalcoholic
 
 import android.net.http.HttpException
 import android.os.Build

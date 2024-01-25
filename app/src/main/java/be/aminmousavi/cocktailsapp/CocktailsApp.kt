@@ -25,12 +25,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import be.aminmousavi.cocktailsapp.data.DataSource
-import be.aminmousavi.cocktailsapp.ui.drinks.CocktailsScreen
-import be.aminmousavi.cocktailsapp.ui.drinks.CocktailsViewModel
-import be.aminmousavi.cocktailsapp.ui.drinks.NonAlcoholicDrinksScreen
-import be.aminmousavi.cocktailsapp.ui.drinks.NonAlcoholicDrinksViewModel
-import be.aminmousavi.cocktailsapp.ui.drinks.ShakeScreen
-import be.aminmousavi.cocktailsapp.ui.drinks.ShakeViewModel
+import be.aminmousavi.cocktailsapp.ui.drinks.cocktails.CocktailsScreen
+import be.aminmousavi.cocktailsapp.ui.drinks.cocktails.CocktailsViewModel
+import be.aminmousavi.cocktailsapp.ui.drinks.nonalcoholic.NonAlcoholicDrinksScreen
+import be.aminmousavi.cocktailsapp.ui.drinks.nonalcoholic.NonAlcoholicDrinksViewModel
+import be.aminmousavi.cocktailsapp.ui.drinks.shake.ShakeScreen
+import be.aminmousavi.cocktailsapp.ui.drinks.shake.ShakeViewModel
 import be.aminmousavi.cocktailsapp.ui.home.HomeScreen
 
 

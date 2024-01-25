@@ -1,4 +1,4 @@
-package be.aminmousavi.cocktailsapp.ui.drinks
+package be.aminmousavi.cocktailsapp.ui.drinks.shake
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
@@ -8,17 +8,17 @@ import be.aminmousavi.cocktailsapp.ui.utils.ErrorScreen
 import be.aminmousavi.cocktailsapp.ui.utils.LoadingScreen
 
 @Composable
-fun NonAlcoholicDrinksScreen(
-    drinksUiState: NonAlcoholicDrinksUiState,
+fun ShakeScreen(
+    drinksUiState: ShakeUiState,
     retryAction: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     when (drinksUiState) {
-        is NonAlcoholicDrinksUiState.Loading -> LoadingScreen(
+        is ShakeUiState.Loading -> LoadingScreen(
             modifier = modifier.fillMaxWidth()
         )
 
-        is NonAlcoholicDrinksUiState.Success -> DrinksGridScreen(
+        is ShakeUiState.Success -> DrinksGridScreen(
             drinksUiState.drinks
         )
 

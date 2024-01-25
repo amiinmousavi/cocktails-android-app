@@ -1,4 +1,4 @@
-package be.aminmousavi.cocktailsapp.ui.drinks
+package be.aminmousavi.cocktailsapp.ui.drinks.shake
 
 import android.net.http.HttpException
 import android.os.Build
@@ -8,6 +8,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
@@ -17,31 +18,30 @@ import be.aminmousavi.cocktailsapp.network.Drink
 import kotlinx.coroutines.launch
 import java.io.IOException
 
-sealed interface CocktailsUiState {
-    data class Success(val drinks: List<Drink>) : CocktailsUiState
-    object Error : CocktailsUiState
-    object Loading : CocktailsUiState
+sealed interface ShakeUiState {
+    data class Success(val drinks: List<Drink>) : ShakeUiState
+    object Error : ShakeUiState
+    object Loading : ShakeUiState
 }
+
 @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
-class CocktailsViewModel(private val drinksRepository: CocktailsRepository) : ViewModel() {
-    var drinksUiState: CocktailsUiState by mutableStateOf(CocktailsUiState.Loading)
+class ShakeViewModel(private val drinksRepository: CocktailsRepository) : ViewModel() {
+    var drinksUiState: ShakeUiState by mutableStateOf(ShakeUiState.Loading)
         private set
-
     init {
-        getCocktails()
+        getShakes()
     }
-
     @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
-    fun getCocktails() {
+    fun getShakes() {
         viewModelScope.launch {
             try{
-                val listResult = drinksRepository.getCocktails()
+                val listResult = drinksRepository.getShakes()
                 val drinks = listResult.drinks
-                drinksUiState = CocktailsUiState.Success(drinks)
+                drinksUiState = ShakeUiState.Success(drinks)
             } catch (e: IOException) {
-                drinksUiState = CocktailsUiState.Error
+                drinksUiState = ShakeUiState.Error
             } catch (e: HttpException){
-                drinksUiState = CocktailsUiState.Error
+                drinksUiState = ShakeUiState.Error
             }
         }
     }
@@ -49,9 +49,9 @@ class CocktailsViewModel(private val drinksRepository: CocktailsRepository) : Vi
     companion object {
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
-                val application = (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as CocktailsApplication)
+                val application = (this[APPLICATION_KEY] as CocktailsApplication)
                 val drinksRepository = application.container.cocktailsRepository
-                CocktailsViewModel(drinksRepository = drinksRepository)
+                ShakeViewModel(drinksRepository = drinksRepository)
             }
         }
     }

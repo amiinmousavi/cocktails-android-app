@@ -1,4 +1,4 @@
-package be.aminmousavi.cocktailsapp.ui.drinks
+package be.aminmousavi.cocktailsapp.ui.drinks.cocktails
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
