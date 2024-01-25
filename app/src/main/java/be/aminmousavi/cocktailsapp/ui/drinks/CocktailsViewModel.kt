@@ -17,30 +17,31 @@ import be.aminmousavi.cocktailsapp.network.Drink
 import kotlinx.coroutines.launch
 import java.io.IOException
 
-sealed interface CoffeeUiState {
-    data class Success(val drinks: List<Drink>) : CoffeeUiState
-    object Error : CoffeeUiState
-    object Loading : CoffeeUiState
+sealed interface CocktailsUiState {
+    data class Success(val drinks: List<Drink>) : CocktailsUiState
+    object Error : CocktailsUiState
+    object Loading : CocktailsUiState
 }
-class CoffeeViewModel(private val drinksRepository: CocktailsRepository) : ViewModel() {
-    var drinksUiState: CoffeeUiState by mutableStateOf(CoffeeUiState.Loading)
+@RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
+class CocktailsViewModel(private val drinksRepository: CocktailsRepository) : ViewModel() {
+    var drinksUiState: CocktailsUiState by mutableStateOf(CocktailsUiState.Loading)
         private set
 
     init {
-        getCoffee()
+        getCocktails()
     }
 
     @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
-    fun getCoffee() {
+    fun getCocktails() {
         viewModelScope.launch {
             try{
-                val listResult = drinksRepository.getCoffee()
+                val listResult = drinksRepository.getCocktails()
                 val drinks = listResult.drinks
-                drinksUiState = CoffeeUiState.Success(drinks)
+                drinksUiState = CocktailsUiState.Success(drinks)
             } catch (e: IOException) {
-                drinksUiState = CoffeeUiState.Error
+                drinksUiState = CocktailsUiState.Error
             } catch (e: HttpException){
-                drinksUiState = CoffeeUiState.Error
+                drinksUiState = CocktailsUiState.Error
             }
         }
     }
@@ -50,7 +51,7 @@ class CoffeeViewModel(private val drinksRepository: CocktailsRepository) : ViewM
             initializer {
                 val application = (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as CocktailsApplication)
                 val drinksRepository = application.container.cocktailsRepository
-                CoffeeViewModel(drinksRepository = drinksRepository)
+                CocktailsViewModel(drinksRepository = drinksRepository)
             }
         }
     }

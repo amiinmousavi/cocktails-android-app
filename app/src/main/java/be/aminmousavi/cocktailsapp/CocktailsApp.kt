@@ -25,8 +25,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import be.aminmousavi.cocktailsapp.data.DataSource
-import be.aminmousavi.cocktailsapp.ui.drinks.CoffeeScreen
-import be.aminmousavi.cocktailsapp.ui.drinks.CoffeeViewModel
+import be.aminmousavi.cocktailsapp.ui.drinks.CocktailsScreen
+import be.aminmousavi.cocktailsapp.ui.drinks.CocktailsViewModel
 import be.aminmousavi.cocktailsapp.ui.drinks.NonAlcoholicDrinksScreen
 import be.aminmousavi.cocktailsapp.ui.drinks.NonAlcoholicDrinksViewModel
 import be.aminmousavi.cocktailsapp.ui.drinks.ShakeScreen
@@ -69,11 +69,7 @@ enum class CocktailsScreen(@StringRes val title: Int) {
     NonAlcoholic(title = R.string.non_alcoholic),
     RandomDrink(title = R.string.random_drink),
     Shake(title = R.string.shake),
-    Coffee(title = R.string.coffee),
-    Cocktail(title = R.string.cocktail),
-    OrdinaryDrink(title = R.string.ordinary_drink),
-    Scotch(title = R.string.scotch),
-    Vodka(title = R.string.vodka)
+    Coffee(title = R.string.cocktail),
 }
 
 @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
@@ -115,22 +111,6 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                             CocktailsScreen.Coffee.title -> {
                                 navController.navigate(CocktailsScreen.Coffee.name)
                             }
-
-//                            CocktailsScreen.Cocktail.title -> {
-//                                navController.navigate(CocktailsScreen.Cocktail.name)
-//                            }
-
-//                            CocktailsScreen.OrdinaryDrink.title -> {
-//                                navController.navigate(CocktailsScreen.OrdinaryDrink.name)
-//                            }
-
-//                            CocktailsScreen.Scotch.title -> {
-//                                navController.navigate(CocktailsScreen.Scotch.name)
-//                            }
-
-//                            else -> {
-//                                navController.navigate(CocktailsScreen.Vodka.name)
-//                            }
                         }
                     }
                 )
@@ -157,29 +137,12 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
 //            }
 
             composable(route = CocktailsScreen.Coffee.name) {
-                val coffeeViewModel: CoffeeViewModel = viewModel(factory = CoffeeViewModel.Factory)
-                CoffeeScreen(
+                val coffeeViewModel: CocktailsViewModel = viewModel(factory = CocktailsViewModel.Factory)
+                CocktailsScreen(
                     drinksUiState = coffeeViewModel.drinksUiState,
-                    retryAction = coffeeViewModel::getCoffee
+                    retryAction = coffeeViewModel::getCocktails
                 )
             }
-
-//            composable(route = CocktailsScreen.Cocktail.name) {
-//                DrinksScreen(route = "Cocktail")
-//            }
-
-//            composable(route = CocktailsScreen.OrdinaryDrink.name) {
-//                DrinksScreen(route = "Ordinary Drink")
-//            }
-
-//            composable(route = CocktailsScreen.Scotch.name) {
-//                DrinksScreen(route = "Scotch")
-//            }
-
-//            composable(route = CocktailsScreen.Vodka.name) {
-//                DrinksScreen(route = "Vodka")
-//            }
-
         }
     }
 }

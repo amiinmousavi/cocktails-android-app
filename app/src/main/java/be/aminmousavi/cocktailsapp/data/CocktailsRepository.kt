@@ -6,7 +6,7 @@ import be.aminmousavi.cocktailsapp.network.CocktailsApiService
 interface CocktailsRepository {
     suspend fun getNonAlcoholicDrinks(): DrinksApiResponse
     suspend fun getShakes(): DrinksApiResponse
-    suspend fun getCoffee(): DrinksApiResponse
+    suspend fun getCocktails(): DrinksApiResponse
 }
 
 class NetworkCocktailsRepository(private val cocktailsApiService: CocktailsApiService) :
@@ -18,6 +18,6 @@ class NetworkCocktailsRepository(private val cocktailsApiService: CocktailsApiSe
     override suspend fun getShakes(): DrinksApiResponse =
         cocktailsApiService.getShakes()
 
-    override suspend fun getCoffee(): DrinksApiResponse =
-        cocktailsApiService.getCoffee()
+    override suspend fun getCocktails(): DrinksApiResponse =
+        cocktailsApiService.getCocktails()
 }
