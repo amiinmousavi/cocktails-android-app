@@ -25,25 +25,30 @@ sealed interface DrinksUiState {
 }
 
 @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
-class DrinksViewModel(private val drinksRepository: CocktailsRepository) : ViewModel() {
+class DrinksViewModel(
+    private val drinksRepository: CocktailsRepository,
+    private val defaultCategory: String
+) : ViewModel() {
     var drinksUiState: DrinksUiState by mutableStateOf(DrinksUiState.Loading)
         private set
 
     init {
-        getDrinksByCategory()
+        getDrinksByCategory(defaultCategory)
     }
 
     @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
-    fun getDrinksByCategory() {
+    fun getDrinksByCategory(category: String) {
         viewModelScope.launch {
             try {
-                val listResult = drinksRepository.getNonAlcoholicDrinks()
+                val listResult = when (category) {
+                    "Non_Alcoholic" -> drinksRepository.getNonAlcoholicDrinks()
+                    else -> throw IllegalArgumentException("Invalid category: $category")
+                }
                 val drinks = listResult.drinks
                 drinksUiState = DrinksUiState.Success(drinks)
             } catch (e: IOException) {
                 drinksUiState = DrinksUiState.Error
-            }
-            catch(e: HttpException) {
+            } catch (e: HttpException) {
                 drinksUiState = DrinksUiState.Error
             }
         }
@@ -54,7 +59,12 @@ class DrinksViewModel(private val drinksRepository: CocktailsRepository) : ViewM
             initializer {
                 val application = (this[APPLICATION_KEY] as CocktailsApplication)
                 val drinksRepository = application.container.cocktailsRepository
-                DrinksViewModel(drinksRepository = drinksRepository)
+                val defaultCategory = (this["key"] as String?) ?: "Non_Alcoholic"
+                DrinksViewModel(
+                    drinksRepository = drinksRepository,
+                    defaultCategory = defaultCategory
+                )
+
             }
         }
     }

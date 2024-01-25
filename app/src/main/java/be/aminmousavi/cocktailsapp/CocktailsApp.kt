@@ -99,7 +99,7 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                             CocktailsScreen.NonAlcoholic.title -> {
                                 navController.navigate(CocktailsScreen.NonAlcoholic.name)
                             }
-//
+
 //                            CocktailsScreen.RandomDrink.title -> {
 //                                navController.navigate(CocktailsScreen.RandomDrink.name)
 //                            }
@@ -132,11 +132,11 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                 )
             }
             composable(route = CocktailsScreen.NonAlcoholic.name) {
-                val drinksViewModel: DrinksViewModel = viewModel(factory = DrinksViewModel.Factory)
+                val drinksViewModel: DrinksViewModel = viewModel(factory = DrinksViewModel.Factory, key = "Non_Alcoholic")
                 DrinksScreen(
                     route = "Non Alcoholic",
                     drinksUiState = drinksViewModel.drinksUiState,
-                    retryAction = drinksViewModel::getDrinksByCategory
+                    retryAction = { (drinksViewModel::getDrinksByCategory)("Non_Alcoholic") }
                 )
             }
 
