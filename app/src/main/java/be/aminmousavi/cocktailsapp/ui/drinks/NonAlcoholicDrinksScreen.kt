@@ -1,12 +1,10 @@
 package be.aminmousavi.cocktailsapp.ui.drinks
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -34,23 +32,22 @@ import androidx.compose.ui.unit.sp
 import be.aminmousavi.cocktailsapp.R
 import be.aminmousavi.cocktailsapp.network.Drink
 import be.aminmousavi.cocktailsapp.ui.theme.CocktailsAppTheme
-import be.aminmousavi.cocktailsapp.ui.utils.HeadingText
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 
 @Composable
-fun DrinksScreen(
+fun NonAlcoholicDrinksScreen(
     route: String,
-    drinksUiState: DrinksUiState,
+    drinksUiState: NonAlcoholicDrinksUiState,
     retryAction: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     when (drinksUiState) {
-        is DrinksUiState.Loading -> LoadingScreen(
+        is NonAlcoholicDrinksUiState.Loading -> LoadingScreen(
             modifier = modifier.fillMaxWidth()
         )
 
-        is DrinksUiState.Success -> DrinksGridScreen(drinksUiState.drinks)
+        is NonAlcoholicDrinksUiState.Success -> DrinksGridScreen(drinksUiState.drinks)
         else -> ErrorScreen(
             retryAction = retryAction,
             modifier = modifier.fillMaxWidth()
