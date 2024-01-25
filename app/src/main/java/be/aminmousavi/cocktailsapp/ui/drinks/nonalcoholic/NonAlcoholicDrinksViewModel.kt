@@ -14,7 +14,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import be.aminmousavi.cocktailsapp.CocktailsApplication
 import be.aminmousavi.cocktailsapp.data.CocktailsRepository
-import be.aminmousavi.cocktailsapp.network.Drink
+import be.aminmousavi.cocktailsapp.model.Drink
 import kotlinx.coroutines.launch
 import java.io.IOException
 

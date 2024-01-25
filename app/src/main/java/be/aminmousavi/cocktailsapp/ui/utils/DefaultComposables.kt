@@ -32,7 +32,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import be.aminmousavi.cocktailsapp.R
-import be.aminmousavi.cocktailsapp.network.Drink
+import be.aminmousavi.cocktailsapp.model.Drink
 import be.aminmousavi.cocktailsapp.ui.theme.CocktailsAppTheme
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
