@@ -25,26 +25,24 @@ sealed interface NonAlcoholicDrinksUiState {
 }
 
 @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
-class NonAlcoholicDrinksViewModel(private val drinksRepository: CocktailsRepository) : ViewModel() {
-    var drinksUiState: NonAlcoholicDrinksUiState by mutableStateOf(NonAlcoholicDrinksUiState.Loading)
+class NonAlcoholicDrinksViewModel(private val cocktailsRepository: CocktailsRepository) : ViewModel() {
+    var uiState: NonAlcoholicDrinksUiState by mutableStateOf(NonAlcoholicDrinksUiState.Loading)
         private set
 
     init {
         getNonAlcoholicDrinks()
     }
 
-    @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
     fun getNonAlcoholicDrinks() {
         viewModelScope.launch {
-            try {
-                val listResult = drinksRepository.getNonAlcoholicDrinks()
+            uiState = try {
+                val listResult = cocktailsRepository.getNonAlcoholicDrinks()
                 val drinks = listResult.drinks
-                drinksUiState = NonAlcoholicDrinksUiState.Success(drinks)
+                NonAlcoholicDrinksUiState.Success(drinks)
             } catch (e: IOException) {
-                drinksUiState = NonAlcoholicDrinksUiState.Error
-            }
-            catch(e: HttpException) {
-                drinksUiState = NonAlcoholicDrinksUiState.Error
+                NonAlcoholicDrinksUiState.Error
+            } catch(e: HttpException) {
+                NonAlcoholicDrinksUiState.Error
             }
         }
     }
@@ -54,7 +52,7 @@ class NonAlcoholicDrinksViewModel(private val drinksRepository: CocktailsReposit
             initializer {
                 val application = (this[APPLICATION_KEY] as CocktailsApplication)
                 val drinksRepository = application.container.cocktailsRepository
-                NonAlcoholicDrinksViewModel(drinksRepository = drinksRepository)
+                NonAlcoholicDrinksViewModel(cocktailsRepository = drinksRepository)
             }
         }
     }

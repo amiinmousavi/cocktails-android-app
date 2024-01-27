@@ -118,34 +118,37 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                 )
             }
             composable(route = CocktailsScreen.NonAlcoholic.name) {
-                val nonAlcoholicDrinksViewModel: NonAlcoholicDrinksViewModel =
+                val viewModel: NonAlcoholicDrinksViewModel =
                     viewModel(factory = NonAlcoholicDrinksViewModel.Factory)
                 NonAlcoholicDrinksScreen(
-                    drinksUiState = nonAlcoholicDrinksViewModel.drinksUiState,
-                    retryAction = nonAlcoholicDrinksViewModel::getNonAlcoholicDrinks
+                    uiState = viewModel.uiState,
+                    retryAction = viewModel::getNonAlcoholicDrinks
                 )
             }
 
             composable(route = CocktailsScreen.Shake.name) {
-                val shakesViewModel: ShakeViewModel = viewModel(factory = ShakeViewModel.Factory)
+                val viewModel: ShakeViewModel = viewModel(factory = ShakeViewModel.Factory)
                 ShakeScreen(
-                    drinksUiState = shakesViewModel.drinksUiState,
-                    retryAction = shakesViewModel::getShakes
+                    uiState = viewModel.uiState,
+                    retryAction = viewModel::getShakes
                 )
             }
 
             composable(route = CocktailsScreen.Coffee.name) {
-                val coffeeViewModel: CocktailsViewModel =
+                val viewModel: CocktailsViewModel =
                     viewModel(factory = CocktailsViewModel.Factory)
                 CocktailsScreen(
-                    drinksUiState = coffeeViewModel.drinksUiState,
-                    retryAction = coffeeViewModel::getCocktails
+                    uiState = viewModel.uiState,
+                    retryAction = viewModel::getCocktails
                 )
             }
 
             composable(route = CocktailsScreen.RandomDrink.name) {
-                val randomDrinkViewModel: RandomDrinkViewModel = viewModel(factory = RandomDrinkViewModel.Factory)
-                RandomDrinkScreen(marsUiState = randomDrinkViewModel.randomDrinkUiState)
+                val viewModel: RandomDrinkViewModel =
+                    viewModel(factory = RandomDrinkViewModel.Factory)
+                RandomDrinkScreen(
+                    uiState = viewModel.uiState,
+                    retryAction = viewModel::getRandomDrink)
             }
         }
     }

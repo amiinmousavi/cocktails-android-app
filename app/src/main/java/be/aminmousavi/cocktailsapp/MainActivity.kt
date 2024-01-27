@@ -19,7 +19,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             CocktailsAppTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -34,7 +33,7 @@ class MainActivity : ComponentActivity() {
 @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun CocktailsAppPreview() {
     CocktailsAppTheme {
         CocktailsApp()
     }

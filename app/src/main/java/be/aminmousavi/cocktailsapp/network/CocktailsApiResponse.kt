@@ -5,7 +5,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class DrinksApiResponse(
+data class CocktailsApiResponse(
     @SerialName(value = "drinks")
     val drinks: List<Drink>
 )

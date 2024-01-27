@@ -25,23 +25,22 @@ sealed interface ShakeUiState {
 }
 
 @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
-class ShakeViewModel(private val drinksRepository: CocktailsRepository) : ViewModel() {
-    var drinksUiState: ShakeUiState by mutableStateOf(ShakeUiState.Loading)
+class ShakeViewModel(private val cocktailsRepository: CocktailsRepository) : ViewModel() {
+    var uiState: ShakeUiState by mutableStateOf(ShakeUiState.Loading)
         private set
     init {
         getShakes()
     }
-    @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
     fun getShakes() {
         viewModelScope.launch {
-            try{
-                val listResult = drinksRepository.getShakes()
+            uiState = try{
+                val listResult = cocktailsRepository.getShakes()
                 val drinks = listResult.drinks
-                drinksUiState = ShakeUiState.Success(drinks)
+                ShakeUiState.Success(drinks)
             } catch (e: IOException) {
-                drinksUiState = ShakeUiState.Error
+                ShakeUiState.Error
             } catch (e: HttpException){
-                drinksUiState = ShakeUiState.Error
+                ShakeUiState.Error
             }
         }
     }
@@ -51,7 +50,7 @@ class ShakeViewModel(private val drinksRepository: CocktailsRepository) : ViewMo
             initializer {
                 val application = (this[APPLICATION_KEY] as CocktailsApplication)
                 val drinksRepository = application.container.cocktailsRepository
-                ShakeViewModel(drinksRepository = drinksRepository)
+                ShakeViewModel(cocktailsRepository = drinksRepository)
             }
         }
     }

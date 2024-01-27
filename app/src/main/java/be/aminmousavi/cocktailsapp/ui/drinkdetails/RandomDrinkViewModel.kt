@@ -19,18 +19,18 @@ sealed interface RandomDrinkUiState {
     object Loading : RandomDrinkUiState
 }
 
-class RandomDrinkViewModel(private val drinksRepository: CocktailsRepository) : ViewModel() {
-    var randomDrinkUiState: RandomDrinkUiState by mutableStateOf(RandomDrinkUiState.Loading)
+class RandomDrinkViewModel(private val cocktailsRepository: CocktailsRepository) : ViewModel() {
+    var uiState: RandomDrinkUiState by mutableStateOf(RandomDrinkUiState.Loading)
         private set
 
     init {
-        getMarsPhotos()
+        getRandomDrink()
     }
 
-    fun getMarsPhotos() {
+    fun getRandomDrink() {
         viewModelScope.launch {
-            randomDrinkUiState = try {
-                val listResult = drinksRepository.getRandomDrink()
+            uiState = try {
+                val listResult = cocktailsRepository.getRandomDrink()
                 RandomDrinkUiState.Success("${listResult.drinks}")
             } catch (e: IOException) {
                 RandomDrinkUiState.Error
@@ -43,7 +43,7 @@ class RandomDrinkViewModel(private val drinksRepository: CocktailsRepository) : 
             initializer {
                 val application = (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as CocktailsApplication)
                 val drinksRepository = application.container.cocktailsRepository
-                RandomDrinkViewModel(drinksRepository = drinksRepository)
+                RandomDrinkViewModel(cocktailsRepository = drinksRepository)
             }
         }
     }
