@@ -3,7 +3,7 @@ package be.aminmousavi.cocktailsapp.ui.drinks.cocktails
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import be.aminmousavi.cocktailsapp.ui.utils.DrinksGridScreen
+import be.aminmousavi.cocktailsapp.ui.utils.GridScreen
 import be.aminmousavi.cocktailsapp.ui.utils.ErrorScreen
 import be.aminmousavi.cocktailsapp.ui.utils.LoadingScreen
 
@@ -18,7 +18,7 @@ fun CocktailsScreen(
             modifier = modifier.fillMaxWidth()
         )
 
-        is CocktailsUiState.Success -> DrinksGridScreen(
+        is CocktailsUiState.Success -> GridScreen(
             uiState.drinks
         )
 
