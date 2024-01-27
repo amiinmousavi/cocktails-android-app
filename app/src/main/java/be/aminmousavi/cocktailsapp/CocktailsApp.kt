@@ -25,6 +25,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import be.aminmousavi.cocktailsapp.data.DataSource
+import be.aminmousavi.cocktailsapp.ui.drinkdetails.RandomDrinkScreen
+import be.aminmousavi.cocktailsapp.ui.drinkdetails.RandomDrinkViewModel
 import be.aminmousavi.cocktailsapp.ui.drinks.cocktails.CocktailsScreen
 import be.aminmousavi.cocktailsapp.ui.drinks.cocktails.CocktailsViewModel
 import be.aminmousavi.cocktailsapp.ui.drinks.nonalcoholic.NonAlcoholicDrinksScreen
@@ -142,6 +144,8 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
             }
 
             composable(route = CocktailsScreen.RandomDrink.name) {
+                val randomDrinkViewModel: RandomDrinkViewModel = viewModel(factory = RandomDrinkViewModel.Factory)
+                RandomDrinkScreen(marsUiState = randomDrinkViewModel.randomDrinkUiState)
             }
         }
     }

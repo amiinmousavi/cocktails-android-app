@@ -7,6 +7,7 @@ interface CocktailsRepository {
     suspend fun getNonAlcoholicDrinks(): DrinksApiResponse
     suspend fun getShakes(): DrinksApiResponse
     suspend fun getCocktails(): DrinksApiResponse
+    suspend fun getRandomDrink(): DrinksApiResponse
 }
 
 class NetworkCocktailsRepository(private val cocktailsApiService: CocktailsApiService) :
@@ -20,4 +21,7 @@ class NetworkCocktailsRepository(private val cocktailsApiService: CocktailsApiSe
 
     override suspend fun getCocktails(): DrinksApiResponse =
         cocktailsApiService.getCocktails()
+
+    override suspend fun getRandomDrink(): DrinksApiResponse =
+        cocktailsApiService.getRandomDrink()
 }

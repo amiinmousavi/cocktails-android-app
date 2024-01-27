@@ -12,5 +12,20 @@ data class Drink(
     val thumbnailUrl: String,
 
     @SerialName("idDrink")
-    val id: String
+    val id: String,
+
+    @SerialName("strCategory")
+    var category: String? = null,
+
+    @SerialName("strAlcoholic")
+    var alcoholic: String? = null,
+
+    @SerialName("strGlass")
+    var glass: String? = null,
+
+    @SerialName("strInstructions")
+    var instructions: String? = null,
+
+    @SerialName("dateModified")
+    var dateModified: String? = null
 )

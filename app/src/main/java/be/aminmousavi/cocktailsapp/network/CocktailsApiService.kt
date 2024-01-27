@@ -12,6 +12,6 @@ interface CocktailsApiService {
     suspend fun getCocktails(): DrinksApiResponse
 
     @GET("random.php")
-    suspend fun getRandomDrink(): DetailsApiResponse
+    suspend fun getRandomDrink(): DrinksApiResponse
 
 }
