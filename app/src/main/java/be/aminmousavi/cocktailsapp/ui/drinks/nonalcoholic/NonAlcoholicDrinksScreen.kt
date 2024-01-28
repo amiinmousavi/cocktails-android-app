@@ -10,7 +10,7 @@ import be.aminmousavi.cocktailsapp.ui.utils.LoadingScreen
 @Composable
 fun NonAlcoholicDrinksScreen(
     uiState: NonAlcoholicDrinksUiState,
-    retryAction: () -> Unit,
+    refreshAction: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     when (uiState) {
@@ -23,7 +23,7 @@ fun NonAlcoholicDrinksScreen(
         )
 
         else -> ErrorScreen(
-            retryAction = retryAction,
+            refreshAction = refreshAction,
             modifier = modifier.fillMaxWidth()
         )
     }

@@ -26,7 +26,7 @@ fun LoadingScreen(modifier: Modifier = Modifier) {
 
 @Composable
 fun ErrorScreen(
-    retryAction: () -> Unit,
+    refreshAction: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -39,8 +39,8 @@ fun ErrorScreen(
             contentDescription = stringResource(R.string.connection_error)
         )
         Text(text = stringResource(R.string.loading_failed), modifier = Modifier.padding(16.dp))
-        Button(onClick = retryAction) {
-            Text(stringResource(R.string.retry))
+        Button(onClick = refreshAction) {
+            Text(stringResource(R.string.refresh))
         }
     }
 }

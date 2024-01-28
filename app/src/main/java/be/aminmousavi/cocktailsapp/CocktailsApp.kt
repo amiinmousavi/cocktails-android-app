@@ -122,7 +122,7 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                     viewModel(factory = NonAlcoholicDrinksViewModel.Factory)
                 NonAlcoholicDrinksScreen(
                     uiState = viewModel.uiState,
-                    retryAction = viewModel::getNonAlcoholicDrinks
+                    refreshAction = viewModel::getNonAlcoholicDrinks
                 )
             }
 
@@ -130,7 +130,7 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                 val viewModel: ShakeViewModel = viewModel(factory = ShakeViewModel.Factory)
                 ShakeScreen(
                     uiState = viewModel.uiState,
-                    retryAction = viewModel::getShakes
+                    refreshAction = viewModel::getShakes
                 )
             }
 
@@ -139,7 +139,7 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                     viewModel(factory = CocktailsViewModel.Factory)
                 CocktailsScreen(
                     uiState = viewModel.uiState,
-                    retryAction = viewModel::getCocktails
+                    refreshAction = viewModel::getCocktails
                 )
             }
 
@@ -148,7 +148,7 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                     viewModel(factory = RandomDrinkViewModel.Factory)
                 RandomDrinkScreen(
                     uiState = viewModel.uiState,
-                    retryAction = viewModel::getRandomDrink)
+                    refreshAction = viewModel::getRandomDrink)
             }
         }
     }

@@ -10,7 +10,7 @@ import be.aminmousavi.cocktailsapp.ui.utils.LoadingScreen
 @Composable
 fun ShakeScreen(
     uiState: ShakeUiState,
-    retryAction: () -> Unit,
+    refreshAction: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     when (uiState) {
@@ -23,7 +23,7 @@ fun ShakeScreen(
         )
 
         else -> ErrorScreen(
-            retryAction = retryAction,
+            refreshAction = refreshAction,
             modifier = modifier.fillMaxWidth()
         )
     }

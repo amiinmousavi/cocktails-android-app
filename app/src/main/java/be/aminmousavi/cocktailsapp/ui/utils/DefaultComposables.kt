@@ -43,7 +43,7 @@ fun Logo(modifier: Modifier = Modifier) {
         painter = painterResource(id = R.drawable.logo),
         contentDescription = stringResource(R.string.logo_png),
 
-    )
+        )
 }
 
 @Composable
@@ -51,11 +51,11 @@ fun HeadingText(text: String, modifier: Modifier = Modifier) {
     Text(
         text = text,
         style = TextStyle(
-            fontSize = 25.sp,
+            fontSize = 35.sp,
             fontWeight = FontWeight.Bold,
             color = Color.Black
         ),
-        modifier = modifier.padding(0.dp, 5.dp)
+        modifier = modifier.padding(0.dp, 0.dp, 0.dp, 8.dp)
     )
 }
 
@@ -68,7 +68,7 @@ fun SubHeadingText(text: String, color: Color = Color.Black, modifier: Modifier 
             fontWeight = FontWeight.Bold,
             color = color
         ),
-        modifier = modifier
+        modifier = modifier.padding(0.dp, 14.dp, 0.dp, 4.dp)
     )
 }
 
@@ -98,9 +98,11 @@ fun DefaultPreview() {
             HeadingText("Heading Text")
             SubHeadingText(text = "Sub Heading Text")
             TitleText(text = "Title")
-            Paragraph(text = "Rub the rim of the glass with the lime slice to make the salt stick to it. " +
-                    "Take care to moisten only the outer rim and sprinkle the salt on it. " +
-                    "The salt should present to the lips of the imbiber and never mix into the cocktail.")
+            Paragraph(
+                text = "Rub the rim of the glass with the lime slice to make the salt stick to it. " +
+                        "Take care to moisten only the outer rim and sprinkle the salt on it. " +
+                        "The salt should present to the lips of the imbiber and never mix into the cocktail."
+            )
         }
     }
 }
