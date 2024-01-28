@@ -71,7 +71,8 @@ enum class CocktailsScreen(@StringRes val title: Int) {
     NonAlcoholic(title = R.string.non_alcoholic),
     RandomDrink(title = R.string.random_drink),
     Shake(title = R.string.shake),
-    Coffee(title = R.string.cocktail),
+    Cocktail(title = R.string.cocktail),
+    Details(title = R.string.details)
 }
 
 @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
@@ -106,8 +107,8 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                                 navController.navigate(CocktailsScreen.Shake.name)
                             }
 
-                            CocktailsScreen.Coffee.title -> {
-                                navController.navigate(CocktailsScreen.Coffee.name)
+                            CocktailsScreen.Cocktail.title -> {
+                                navController.navigate(CocktailsScreen.Cocktail.name)
                             }
 
                             CocktailsScreen.RandomDrink.title -> {
@@ -134,7 +135,7 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                 )
             }
 
-            composable(route = CocktailsScreen.Coffee.name) {
+            composable(route = CocktailsScreen.Cocktail.name) {
                 val viewModel: CocktailsViewModel =
                     viewModel(factory = CocktailsViewModel.Factory)
                 CocktailsScreen(
