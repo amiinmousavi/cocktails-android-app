@@ -10,11 +10,12 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import be.aminmousavi.cocktailsapp.CocktailsApplication
 import be.aminmousavi.cocktailsapp.data.CocktailsRepository
+import be.aminmousavi.cocktailsapp.model.Drink
 import kotlinx.coroutines.launch
 import java.io.IOException
 
 sealed interface RandomDrinkUiState {
-    data class Success(val drinks: String) : RandomDrinkUiState
+    data class Success(val drink: Drink) : RandomDrinkUiState
     object Error : RandomDrinkUiState
     object Loading : RandomDrinkUiState
 }
@@ -31,7 +32,8 @@ class RandomDrinkViewModel(private val cocktailsRepository: CocktailsRepository)
         viewModelScope.launch {
             uiState = try {
                 val listResult = cocktailsRepository.getRandomDrink()
-                RandomDrinkUiState.Success("${listResult.drinks}")
+                val drink = listResult.drinks[0]
+                RandomDrinkUiState.Success(drink)
             } catch (e: IOException) {
                 RandomDrinkUiState.Error
             }
