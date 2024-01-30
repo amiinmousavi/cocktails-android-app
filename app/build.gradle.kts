@@ -67,6 +67,7 @@ dependencies {
 
     // Navigation Runtime
     implementation("androidx.navigation:navigation-runtime-ktx:2.7.6")
+    implementation("com.google.android.gms:play-services-mlkit-text-recognition-common:19.0.0")
 
     // JUnit, Coroutines Test, Espresso Core, Compose BOM, ...
     testImplementation("junit:junit:4.13.2")

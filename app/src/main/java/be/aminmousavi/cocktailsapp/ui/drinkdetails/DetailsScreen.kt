@@ -1,4 +1,9 @@
 package be.aminmousavi.cocktailsapp.ui.drinkdetails
 
-class DetailsScreen {
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+
+@Composable
+fun DetailsScreen() {
+    Text("DetailsScreen")
 }
