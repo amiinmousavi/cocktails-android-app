@@ -42,8 +42,8 @@ fun Logo(modifier: Modifier = Modifier) {
     Image(
         painter = painterResource(id = R.drawable.logo),
         contentDescription = stringResource(R.string.logo_png),
-
-        )
+        modifier = Modifier.padding(0.dp, 16.dp, 0.dp, 0.dp)
+    )
 }
 
 @Composable

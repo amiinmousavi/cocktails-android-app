@@ -1,13 +1,16 @@
 package be.aminmousavi.cocktailsapp.ui.home
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -18,9 +21,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import be.aminmousavi.cocktailsapp.R
 import be.aminmousavi.cocktailsapp.data.DataSource
 import be.aminmousavi.cocktailsapp.ui.theme.CocktailsAppTheme
 import be.aminmousavi.cocktailsapp.ui.utils.Logo
@@ -42,6 +48,8 @@ fun HomeScreen(
                 val option = clickableCardOptions[index]
                 ClickableCard(
                     labelResId = option.labelResId,
+                    backgroundColorResId = option.backgroundColorResId,
+                    fontColorResId = option.fontColorResId,
                     onClick = { onClickableCardClicked(option.labelResId) }
                 )
             }
@@ -53,23 +61,28 @@ fun HomeScreen(
 fun ClickableCard(
     modifier: Modifier = Modifier,
     labelResId: Int,
+    backgroundColorResId: Int,
+    fontColorResId: Int,
     onClick: () -> Unit
 ) {
     Surface(
         modifier = modifier
             .clickable(onClick = onClick)
-            .background(Color.Gray)
             .padding(16.dp),
         shape = RoundedCornerShape(8.dp)
     ) {
         Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
+            modifier = Modifier
+                .fillMaxSize()
+                .background(colorResource(backgroundColorResId))
+                .padding(0.dp, 8.dp),
+            contentAlignment = Alignment.Center,
         ) {
             Text(
                 text = stringResource(id = labelResId),
-                style = MaterialTheme.typography.titleLarge,
-                color = Color.Black
+                style = MaterialTheme.typography.labelLarge,
+                fontWeight = FontWeight.Bold,
+                color = colorResource(fontColorResId),
             )
         }
     }
