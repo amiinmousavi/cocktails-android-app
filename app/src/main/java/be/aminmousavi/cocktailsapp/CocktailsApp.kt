@@ -25,6 +25,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import be.aminmousavi.cocktailsapp.data.DataSource
+import be.aminmousavi.cocktailsapp.ui.drinkdetails.DetailsScreen
 import be.aminmousavi.cocktailsapp.ui.drinkdetails.RandomDrinkScreen
 import be.aminmousavi.cocktailsapp.ui.drinkdetails.RandomDrinkViewModel
 import be.aminmousavi.cocktailsapp.ui.drinks.cocktails.CocktailsScreen
@@ -123,7 +124,8 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                     viewModel(factory = NonAlcoholicDrinksViewModel.Factory)
                 NonAlcoholicDrinksScreen(
                     uiState = viewModel.uiState,
-                    refreshAction = viewModel::getNonAlcoholicDrinks
+                    refreshAction = viewModel::getNonAlcoholicDrinks,
+                    onClickableCardItem = { navController.navigate(CocktailsScreen.Details.name)}
                 )
             }
 
@@ -131,7 +133,8 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                 val viewModel: ShakeViewModel = viewModel(factory = ShakeViewModel.Factory)
                 ShakeScreen(
                     uiState = viewModel.uiState,
-                    refreshAction = viewModel::getShakes
+                    refreshAction = viewModel::getShakes,
+                    onClickableCardItem = { navController.navigate(CocktailsScreen.Details.name)}
                 )
             }
 
@@ -140,7 +143,8 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                     viewModel(factory = CocktailsViewModel.Factory)
                 CocktailsScreen(
                     uiState = viewModel.uiState,
-                    refreshAction = viewModel::getCocktails
+                    refreshAction = viewModel::getCocktails,
+                    onClickableCardItem = { navController.navigate(CocktailsScreen.Details.name)}
                 )
             }
 
@@ -149,7 +153,14 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                     viewModel(factory = RandomDrinkViewModel.Factory)
                 RandomDrinkScreen(
                     uiState = viewModel.uiState,
-                    refreshAction = viewModel::getRandomDrink)
+                    refreshAction = viewModel::getRandomDrink
+                )
+            }
+
+            composable(route = CocktailsScreen.Details.name) {
+                DetailsScreen(
+
+                )
             }
         }
     }

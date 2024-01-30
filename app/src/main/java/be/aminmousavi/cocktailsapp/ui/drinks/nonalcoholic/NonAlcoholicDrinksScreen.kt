@@ -11,6 +11,7 @@ import be.aminmousavi.cocktailsapp.ui.utils.LoadingScreen
 fun NonAlcoholicDrinksScreen(
     uiState: NonAlcoholicDrinksUiState,
     refreshAction: () -> Unit,
+    onClickableCardItem: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     when (uiState) {
@@ -19,7 +20,8 @@ fun NonAlcoholicDrinksScreen(
         )
 
         is NonAlcoholicDrinksUiState.Success -> GridScreen(
-            uiState.drinks
+            uiState.drinks,
+            onClickableCardItem = onClickableCardItem
         )
 
         else -> ErrorScreen(

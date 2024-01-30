@@ -11,6 +11,7 @@ import be.aminmousavi.cocktailsapp.ui.utils.LoadingScreen
 fun ShakeScreen(
     uiState: ShakeUiState,
     refreshAction: () -> Unit,
+    onClickableCardItem: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     when (uiState) {
@@ -19,7 +20,8 @@ fun ShakeScreen(
         )
 
         is ShakeUiState.Success -> GridScreen(
-            uiState.drinks
+            uiState.drinks,
+            onClickableCardItem = onClickableCardItem
         )
 
         else -> ErrorScreen(
