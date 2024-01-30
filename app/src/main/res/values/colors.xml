@@ -10,6 +10,7 @@
 
     // My colors
     <color name="light_blue">#FFA7E5FF</color>
-    <color name="gray">#FF474747</color>
+    <color name="light_pink">#FFf582AE</color>
     <color name="light_gray">#FFCDCDCD</color>
+    <color name="gray">#FF4C4C4C</color>
 </resources>

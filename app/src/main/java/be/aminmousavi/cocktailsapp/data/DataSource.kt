@@ -20,7 +20,7 @@ object DataSource {
         ),
         ClickableCardOption(
             labelResId = R.string.random_drink,
-            backgroundColorResId = R.color.gray,
+            backgroundColorResId = R.color.light_pink,
             fontColorResId = R.color.white,
             route = "random_drink"
         ),
