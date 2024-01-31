@@ -5,6 +5,13 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
+
+// utils.ListComposables    > drinks.nonAlcoholic.NonAlcoholicScreen    >
+//                          > drinks.cocktails.CocktailScreen           >
+//                          > drinks.shake.ShakeScreen                  >   CocktailsApp
+
+//  > composable(route ...) { ...Screen(onClickableCardItem{navController.navigate(...)})}
+
 // navigation button
 
 @Composable
