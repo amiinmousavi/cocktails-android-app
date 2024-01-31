@@ -136,7 +136,8 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                 ShakeScreen(
                     uiState = viewModel.uiState,
                     refreshAction = viewModel::getShakes,
-                    onClickableCardItem = { navController.navigate(CocktailsScreen.Details.name)}
+                    onClickableCardItem = { drinkId ->
+                        Log.i("DrinkId", drinkId)}
                 )
             }
 
@@ -146,7 +147,8 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                 CocktailsScreen(
                     uiState = viewModel.uiState,
                     refreshAction = viewModel::getCocktails,
-                    onClickableCardItem = { navController.navigate(CocktailsScreen.Details.name)}
+                    onClickableCardItem = { drinkId ->
+                        Log.i("DrinkId", drinkId)}
                 )
             }
 

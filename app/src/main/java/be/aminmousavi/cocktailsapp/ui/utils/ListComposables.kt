@@ -85,15 +85,6 @@ fun CardItem(
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold
             )
-            Text(
-                drink.id,
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(16.dp),
-                color = Color.Black,
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold
-            )
         }
     }
 }
