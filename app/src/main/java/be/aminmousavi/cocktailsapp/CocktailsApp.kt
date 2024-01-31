@@ -127,6 +127,7 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                     uiState = viewModel.uiState,
                     refreshAction = viewModel::getNonAlcoholicDrinks,
                     onClickableCardItem = { drinkId ->
+                        // drinkId wordt doorgegeven maar navigeren met argument lukt momenteel niet
                         Log.i("DrinkId", drinkId)}
                 )
             }
