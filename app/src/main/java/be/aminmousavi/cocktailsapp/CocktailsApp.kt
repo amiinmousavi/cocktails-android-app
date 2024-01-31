@@ -1,6 +1,7 @@
 package be.aminmousavi.cocktailsapp
 
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresExtension
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.padding
@@ -125,7 +126,8 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                 NonAlcoholicDrinksScreen(
                     uiState = viewModel.uiState,
                     refreshAction = viewModel::getNonAlcoholicDrinks,
-                    onClickableCardItem = { navController.navigate(CocktailsScreen.Details.name)}
+                    onClickableCardItem = { drinkId ->
+                        Log.i("DrinkId", drinkId)}
                 )
             }
 

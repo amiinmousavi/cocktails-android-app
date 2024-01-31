@@ -31,7 +31,7 @@ import coil.request.ImageRequest
 @Composable
 fun GridScreen(
     drinks: List<Drink>,
-    onClickableCardItem: () -> Unit,
+    onClickableCardItem: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyVerticalGrid(
@@ -42,7 +42,7 @@ fun GridScreen(
         items(items = drinks, key = { drink -> drink.id }) { drink ->
             CardItem(
                 drink = drink,
-                onClick = { onClickableCardItem() },
+                onClick = { onClickableCardItem(drink.id) },
                 modifier = modifier
                     .padding(4.dp)
                     .fillMaxWidth()
@@ -78,6 +78,15 @@ fun CardItem(
             }
             Text(
                 drink.name,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp),
+                color = Color.Black,
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold
+            )
+            Text(
+                drink.id,
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(16.dp),
