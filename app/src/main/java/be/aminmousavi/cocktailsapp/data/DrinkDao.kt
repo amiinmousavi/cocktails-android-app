@@ -25,6 +25,6 @@ interface DrinkDao {
     fun getDrink(id: String): Flow<Drink>
 
     @Query("SELECT * from drinks ORDER BY name ASC")
-    fun getAllItems(): Flow<List<Drink>>
+    fun getAllDrinks(): Flow<List<Drink>>
 
 }
