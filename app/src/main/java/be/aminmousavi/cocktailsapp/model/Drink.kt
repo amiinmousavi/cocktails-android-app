@@ -1,8 +1,11 @@
 package be.aminmousavi.cocktailsapp.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+@Entity(tableName = "drinks")
 @Serializable
 data class Drink(
     @SerialName("strDrink")
@@ -10,7 +13,8 @@ data class Drink(
 
     @SerialName("strDrinkThumb")
     val thumbnailUrl: String,
-
+    
+    @PrimaryKey
     @SerialName("idDrink")
     val id: String,
 
