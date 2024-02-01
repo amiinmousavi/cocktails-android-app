@@ -13,7 +13,7 @@ data class Drink(
 
     @SerialName("strDrinkThumb")
     val thumbnailUrl: String,
-    
+
     @PrimaryKey
     @SerialName("idDrink")
     val id: String,
