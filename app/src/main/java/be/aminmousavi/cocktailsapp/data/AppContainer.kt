@@ -1,5 +1,6 @@
 package be.aminmousavi.cocktailsapp.data
 
+import android.content.Context
 import be.aminmousavi.cocktailsapp.network.CocktailsApiService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
@@ -8,6 +9,10 @@ import retrofit2.Retrofit
 
 interface AppContainer {
     val cocktailsRepository: CocktailsRepository
+}
+
+interface DbContainer {
+    val drinkRepository: DrinkRepository
 }
 
 class DefaultAppContainer : AppContainer {
@@ -28,5 +33,11 @@ class DefaultAppContainer : AppContainer {
 
     override val cocktailsRepository: CocktailsRepository by lazy {
         NetworkCocktailsRepository(retrofitService)
+    }
+}
+
+class DefaultDbContainer(private val context: Context) : DbContainer {
+    override val drinkRepository: DrinkRepository by lazy {
+        OfflineDrinkRepository(DrinkDatabase.getDatabase(context).drinkDao())
     }
 }
