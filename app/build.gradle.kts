@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.serialization") version "1.8.10"
+//    id("com.google.devtools.ksp") version "1.8.21-1.0.11"
 }
 
 android {
@@ -68,6 +69,7 @@ dependencies {
     // Navigation Runtime
     implementation("androidx.navigation:navigation-runtime-ktx:2.7.6")
     implementation("com.google.android.gms:play-services-mlkit-text-recognition-common:19.0.0")
+    implementation("androidx.room:room-common:2.6.1")
 
     // JUnit, Coroutines Test, Espresso Core, Compose BOM, ...
     testImplementation("junit:junit:4.13.2")
@@ -97,4 +99,9 @@ dependencies {
 
     // Coil
     implementation("io.coil-kt:coil-compose:2.4.0")
+
+    // Room
+    implementation("androidx.room:room-runtime:${rootProject.extra["room_version"]}")
+//    ksp("androidx.room:room-compiler:${rootProject.extra["room_version"]}")
+    implementation("androidx.room:room-ktx:${rootProject.extra["room_version"]}")
 }
