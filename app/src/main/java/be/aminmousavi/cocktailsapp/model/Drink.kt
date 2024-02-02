@@ -1,18 +1,22 @@
 package be.aminmousavi.cocktailsapp.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+@Entity(tableName = "items")
 @Serializable
 data class Drink(
+    @PrimaryKey()
+    @SerialName("idDrink")
+    val id: String,
+
     @SerialName("strDrink")
     val name: String,
 
     @SerialName("strDrinkThumb")
     val thumbnailUrl: String,
-
-    @SerialName("idDrink")
-    val id: String,
 
     @SerialName("strCategory")
     var category: String? = null,

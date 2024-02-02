@@ -29,4 +29,9 @@ class DefaultAppContainer : AppContainer {
     override val cocktailsRepository: CocktailsRepository by lazy {
         NetworkCocktailsRepository(retrofitService)
     }
+
+//    override val cocktailsRepository: CocktailsRepository by lazy {
+//        NetworkCocktailsRepository(retrofitService)
+//        OfflineCocktailsRepository(CocktailsDatabase.getDatabase(context).cocktailsDao())
+//    }
 }
