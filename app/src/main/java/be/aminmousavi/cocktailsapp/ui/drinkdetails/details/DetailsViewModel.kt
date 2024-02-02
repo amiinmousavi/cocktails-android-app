@@ -1,4 +1,4 @@
-package be.aminmousavi.cocktailsapp.ui.drinkdetails
+package be.aminmousavi.cocktailsapp.ui.drinkdetails.details
 
 import androidx.lifecycle.ViewModel
 

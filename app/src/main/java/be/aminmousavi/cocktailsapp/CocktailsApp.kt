@@ -27,9 +27,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import be.aminmousavi.cocktailsapp.data.DataSource
-import be.aminmousavi.cocktailsapp.ui.drinkdetails.DetailsScreen
-import be.aminmousavi.cocktailsapp.ui.drinkdetails.RandomDrinkScreen
-import be.aminmousavi.cocktailsapp.ui.drinkdetails.RandomDrinkViewModel
+import be.aminmousavi.cocktailsapp.ui.drinkdetails.details.DetailsScreen
+import be.aminmousavi.cocktailsapp.ui.drinkdetails.randomdrink.RandomDrinkScreen
+import be.aminmousavi.cocktailsapp.ui.drinkdetails.randomdrink.RandomDrinkViewModel
 import be.aminmousavi.cocktailsapp.ui.drinks.cocktails.CocktailsScreen
 import be.aminmousavi.cocktailsapp.ui.drinks.cocktails.CocktailsViewModel
 import be.aminmousavi.cocktailsapp.ui.drinks.nonalcoholic.NonAlcoholicDrinksScreen

@@ -21,7 +21,10 @@ interface CocktailsRepository {
 }
 
 
-class NetworkCocktailsRepository(private val cocktailsApiService: CocktailsApiService, private val drinkDao: DrinkDao) :
+class NetworkCocktailsRepository(
+    private val cocktailsApiService: CocktailsApiService,
+    private val drinkDao: DrinkDao
+) :
     CocktailsRepository {
 
     override suspend fun getNonAlcoholicDrinks(): CocktailsApiResponse =
@@ -35,22 +38,9 @@ class NetworkCocktailsRepository(private val cocktailsApiService: CocktailsApiSe
 
     override suspend fun getRandomDrink(): CocktailsApiResponse =
         cocktailsApiService.getRandomDrink()
-
-    override fun getAllDrinksStream(): Flow<List<Drink>> {
-        TODO("Not yet implemented")
-    }
-
-    override fun getDrinkStream(id: String): Flow<Drink?> {
-        TODO("Not yet implemented")
-    }
-
     override suspend fun insertDrink(drink: Drink) = drinkDao.insert(drink)
-
-    override suspend fun deleteDrink(drink: Drink) {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun updateDrink(drink: Drink) {
-        TODO("Not yet implemented")
-    }
+    override suspend fun deleteDrink(drink: Drink) = drinkDao.delete(drink)
+    override suspend fun updateDrink(drink: Drink) = drinkDao.update(drink)
+    override fun getAllDrinksStream(): Flow<List<Drink>> = drinkDao.getAllDrinks()
+    override fun getDrinkStream(id: String): Flow<Drink?> = drinkDao.getDrink(id)
 }

@@ -1,4 +1,4 @@
-package be.aminmousavi.cocktailsapp.ui.drinkdetails
+package be.aminmousavi.cocktailsapp.ui.drinkdetails.randomdrink
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
