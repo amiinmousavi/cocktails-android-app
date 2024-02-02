@@ -31,11 +31,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import be.aminmousavi.cocktailsapp.R
 import be.aminmousavi.cocktailsapp.model.Drink
-import be.aminmousavi.cocktailsapp.ui.utils.ErrorScreen
-import be.aminmousavi.cocktailsapp.ui.utils.HeadingText
-import be.aminmousavi.cocktailsapp.ui.utils.LoadingScreen
-import be.aminmousavi.cocktailsapp.ui.utils.Paragraph
-import be.aminmousavi.cocktailsapp.ui.utils.SubHeadingText
+import be.aminmousavi.cocktailsapp.ui.components.ErrorScreen
+import be.aminmousavi.cocktailsapp.ui.components.HeadingText
+import be.aminmousavi.cocktailsapp.ui.components.LoadingScreen
+import be.aminmousavi.cocktailsapp.ui.components.Paragraph
+import be.aminmousavi.cocktailsapp.ui.components.SubHeadingText
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 

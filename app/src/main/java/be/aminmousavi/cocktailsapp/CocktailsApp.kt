@@ -26,7 +26,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import be.aminmousavi.cocktailsapp.data.DataSource
+import be.aminmousavi.cocktailsapp.data.DataUI
 import be.aminmousavi.cocktailsapp.ui.drinkdetails.details.DetailsScreen
 import be.aminmousavi.cocktailsapp.ui.drinkdetails.randomdrink.RandomDrinkScreen
 import be.aminmousavi.cocktailsapp.ui.drinkdetails.randomdrink.RandomDrinkViewModel
@@ -100,7 +100,7 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
         ) {
             composable(route = CocktailsScreen.Home.name) {
                 HomeScreen(
-                    clickableCardOptions = DataSource.clickableCardOptions,
+                    clickableCardOptions = DataUI.clickableCardOptions,
                     onClickableCardClicked = { route ->
                         when (route) {
                             CocktailsScreen.NonAlcoholic.title -> {

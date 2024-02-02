@@ -2,7 +2,7 @@ package be.aminmousavi.cocktailsapp.data
 
 import be.aminmousavi.cocktailsapp.R
 
-object DataSource {
+object DataUI {
     data class ClickableCardOption(
         val labelResId: Int,
         val imageResId: Int? = null,

@@ -28,10 +28,6 @@ class DefaultAppContainer(private val context: Context) : AppContainer {
         retrofit.create(CocktailsApiService::class.java)
     }
 
-//    override val cocktailsRepository: CocktailsRepository by lazy {
-//        NetworkCocktailsRepository(retrofitService)
-//    }
-
     override val cocktailsRepository: CocktailsRepository by lazy {
         NetworkCocktailsRepository(retrofitService, CocktailsDatabase.getDatabase(context).drinkDao())
     }

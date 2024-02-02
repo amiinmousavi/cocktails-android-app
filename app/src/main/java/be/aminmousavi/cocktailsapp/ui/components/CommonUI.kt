@@ -1,7 +1,8 @@
-package be.aminmousavi.cocktailsapp.ui.utils
+package be.aminmousavi.cocktailsapp.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,6 +18,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -37,6 +39,7 @@ import be.aminmousavi.cocktailsapp.ui.theme.CocktailsAppTheme
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 
+// Logo Composable
 @Composable
 fun Logo(modifier: Modifier = Modifier) {
     Image(
@@ -46,6 +49,7 @@ fun Logo(modifier: Modifier = Modifier) {
     )
 }
 
+// Text Composables
 @Composable
 fun HeadingText(text: String, modifier: Modifier = Modifier) {
     Text(
@@ -72,6 +76,7 @@ fun SubHeadingText(text: String, color: Color = Color.Black, modifier: Modifier 
     )
 }
 
+// TODO misschien later verwijderen (wordt nergens gebruikt)
 @Composable
 fun TitleText(text: String, modifier: Modifier = Modifier) {
     Box(
@@ -88,20 +93,94 @@ fun Paragraph(text: String, modifier: Modifier = Modifier) {
     Text(text = text, modifier = Modifier.padding(0.dp, 4.dp, 0.dp, 12.dp))
 }
 
-
-@Preview(showBackground = true)
+// Network Composables
 @Composable
-fun DefaultPreview() {
-    CocktailsAppTheme {
-        Column {
-            Logo()
-            HeadingText("Heading Text")
-            SubHeadingText(text = "Sub Heading Text")
-            TitleText(text = "Title")
-            Paragraph(
-                text = "Rub the rim of the glass with the lime slice to make the salt stick to it. " +
-                        "Take care to moisten only the outer rim and sprinkle the salt on it. " +
-                        "The salt should present to the lips of the imbiber and never mix into the cocktail."
+fun LoadingScreen(modifier: Modifier = Modifier) {
+    Image(
+        modifier = modifier.size(200.dp),
+        painter = painterResource(R.drawable.loading_img),
+        contentDescription = stringResource(R.string.loading)
+    )
+}
+
+@Composable
+fun ErrorScreen(
+    refreshAction: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.ic_connection_error),
+            contentDescription = stringResource(R.string.connection_error)
+        )
+        Text(text = stringResource(R.string.loading_failed), modifier = Modifier.padding(16.dp))
+        Button(onClick = refreshAction) {
+            Text(stringResource(R.string.refresh))
+        }
+    }
+}
+
+// List Composables
+@Composable
+fun GridScreen(
+    drinks: List<Drink>,
+    onClickableCardItem: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    LazyVerticalGrid(
+        columns = GridCells.Adaptive(190.dp),
+        modifier = modifier.fillMaxWidth(),
+        contentPadding = PaddingValues(4.dp)
+    ) {
+        items(items = drinks, key = { drink -> drink.id }) { drink ->
+            CardItem(
+                drink = drink,
+                onClick = { onClickableCardItem(drink.id) },
+                modifier = modifier
+                    .padding(4.dp)
+                    .fillMaxWidth()
+            )
+        }
+    }
+}
+
+@Composable
+fun CardItem(
+    drink: Drink,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Surface(
+        modifier = modifier.clickable(onClick = onClick)
+    ) {
+        Card(
+            modifier = modifier.padding(5.dp, 10.dp),
+            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+        ) {
+            Box(modifier = Modifier.fillMaxSize()) {
+                AsyncImage(
+                    model = ImageRequest.Builder(context = LocalContext.current)
+                        .data(drink.thumbnailUrl)
+                        .build(),
+                    contentDescription = stringResource(R.string.drink),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .clip(shape = RoundedCornerShape(8.dp)),
+
+                    )
+            }
+            Text(
+                drink.name,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp),
+                color = Color.Black,
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold
             )
         }
     }

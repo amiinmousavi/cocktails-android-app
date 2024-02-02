@@ -3,9 +3,9 @@ package be.aminmousavi.cocktailsapp.ui.drinks.shake
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import be.aminmousavi.cocktailsapp.ui.utils.GridScreen
-import be.aminmousavi.cocktailsapp.ui.utils.ErrorScreen
-import be.aminmousavi.cocktailsapp.ui.utils.LoadingScreen
+import be.aminmousavi.cocktailsapp.ui.components.GridScreen
+import be.aminmousavi.cocktailsapp.ui.components.ErrorScreen
+import be.aminmousavi.cocktailsapp.ui.components.LoadingScreen
 
 @Composable
 fun ShakeScreen(
