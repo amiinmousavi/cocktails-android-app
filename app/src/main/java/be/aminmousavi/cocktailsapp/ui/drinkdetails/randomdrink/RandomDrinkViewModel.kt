@@ -61,10 +61,10 @@ class RandomDrinkViewModel(private val cocktailsRepository: CocktailsRepository)
             is RandomDrinkUiState.Success -> {
                 if (currentState.isFavorite) {
                     cocktailsRepository.deleteDrink(currentState.drink)
-                    uiState = currentState.copy(isFavorite = !currentState.isFavorite)
+                    toggleFavorite()
                 } else {
                     cocktailsRepository.insertDrink(currentState.drink)
-                    uiState = currentState.copy(isFavorite = !currentState.isFavorite)
+                    toggleFavorite()
                 }
             }
 
