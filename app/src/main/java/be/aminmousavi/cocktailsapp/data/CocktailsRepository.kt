@@ -21,7 +21,7 @@ interface CocktailsRepository {
 }
 
 
-class NetworkCocktailsRepository(private val cocktailsApiService: CocktailsApiService) :
+class NetworkCocktailsRepository(private val cocktailsApiService: CocktailsApiService, private val drinkDao: DrinkDao) :
     CocktailsRepository {
 
     override suspend fun getNonAlcoholicDrinks(): CocktailsApiResponse =
@@ -44,9 +44,7 @@ class NetworkCocktailsRepository(private val cocktailsApiService: CocktailsApiSe
         TODO("Not yet implemented")
     }
 
-    override suspend fun insertDrink(drink: Drink) {
-        TODO("Not yet implemented")
-    }
+    override suspend fun insertDrink(drink: Drink) = drinkDao.insert(drink)
 
     override suspend fun deleteDrink(drink: Drink) {
         TODO("Not yet implemented")

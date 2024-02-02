@@ -41,7 +41,7 @@ class RandomDrinkViewModel(private val cocktailsRepository: CocktailsRepository)
         }
     }
 
-    fun toggleFavorite() {
+    suspend fun toggleFavorite() {
         when (val currentState = uiState) {
             is RandomDrinkUiState.Success -> {
                 uiState = currentState.copy(isFavorite = !currentState.isFavorite)
@@ -49,6 +49,16 @@ class RandomDrinkViewModel(private val cocktailsRepository: CocktailsRepository)
             else -> throw IllegalStateException("Can only toggle favorite for Success state")
         }
     }
+
+    suspend fun saveItem() {
+        when (val currentState = uiState) {
+            is RandomDrinkUiState.Success -> {
+                cocktailsRepository.insertDrink(currentState.drink)
+            }
+            else -> throw IllegalStateException("Can only save drink for Success state")
+        }
+    }
+
 
     companion object {
         val Factory: ViewModelProvider.Factory = viewModelFactory {

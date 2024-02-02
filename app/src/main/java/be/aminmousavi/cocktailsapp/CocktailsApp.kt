@@ -17,6 +17,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -36,6 +37,7 @@ import be.aminmousavi.cocktailsapp.ui.drinks.nonalcoholic.NonAlcoholicDrinksView
 import be.aminmousavi.cocktailsapp.ui.drinks.shake.ShakeScreen
 import be.aminmousavi.cocktailsapp.ui.drinks.shake.ShakeViewModel
 import be.aminmousavi.cocktailsapp.ui.home.HomeScreen
+import kotlinx.coroutines.launch
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -128,7 +130,8 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                     refreshAction = viewModel::getNonAlcoholicDrinks,
                     onClickableCardItem = { drinkId ->
                         // drinkId wordt doorgegeven maar navigeren met argument lukt momenteel niet
-                        Log.i("DrinkId", drinkId)}
+                        Log.i("DrinkId", drinkId)
+                    }
                 )
             }
 
@@ -138,7 +141,8 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                     uiState = viewModel.uiState,
                     refreshAction = viewModel::getShakes,
                     onClickableCardItem = { drinkId ->
-                        Log.i("DrinkId", drinkId)}
+                        Log.i("DrinkId", drinkId)
+                    }
                 )
             }
 
@@ -149,16 +153,22 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                     uiState = viewModel.uiState,
                     refreshAction = viewModel::getCocktails,
                     onClickableCardItem = { drinkId ->
-                        Log.i("DrinkId", drinkId)}
+                        Log.i("DrinkId", drinkId)
+                    }
                 )
             }
 
             composable(route = CocktailsScreen.RandomDrink.name) {
                 val viewModel: RandomDrinkViewModel =
                     viewModel(factory = RandomDrinkViewModel.Factory)
+                val coroutineScope = rememberCoroutineScope()
                 RandomDrinkScreen(
                     uiState = viewModel.uiState,
-                    toggleFavorite = viewModel::toggleFavorite,
+                    saveClick = {
+                        coroutineScope.launch {
+                            viewModel.saveItem()
+                        }
+                    },
                     refreshAction = viewModel::getRandomDrink
                 )
             }
