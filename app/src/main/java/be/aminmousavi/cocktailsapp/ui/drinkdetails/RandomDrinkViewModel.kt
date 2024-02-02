@@ -13,9 +13,10 @@ import be.aminmousavi.cocktailsapp.data.CocktailsRepository
 import be.aminmousavi.cocktailsapp.model.Drink
 import kotlinx.coroutines.launch
 import java.io.IOException
+import java.lang.IllegalStateException
 
 sealed interface RandomDrinkUiState {
-    data class Success(val drink: Drink) : RandomDrinkUiState
+    data class Success(val drink: Drink, val isFavorite: Boolean = false) : RandomDrinkUiState
     object Error : RandomDrinkUiState
     object Loading : RandomDrinkUiState
 }
@@ -37,6 +38,15 @@ class RandomDrinkViewModel(private val cocktailsRepository: CocktailsRepository)
             } catch (e: IOException) {
                 RandomDrinkUiState.Error
             }
+        }
+    }
+
+    fun toggleFavorite() {
+        when (val currentState = uiState) {
+            is RandomDrinkUiState.Success -> {
+                uiState = currentState.copy(isFavorite = !currentState.isFavorite)
+            }
+            else -> throw IllegalStateException("Can only toggle favorite for Success state")
         }
     }
 

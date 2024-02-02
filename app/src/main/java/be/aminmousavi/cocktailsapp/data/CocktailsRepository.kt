@@ -13,7 +13,7 @@ interface CocktailsRepository {
     suspend fun getRandomDrink(): CocktailsApiResponse
 
     // db
-    fun getAllDrinksStream(): Flow<Drink?>
+    fun getAllDrinksStream(): Flow<List<Drink>>
     fun getDrinkStream(id: String): Flow<Drink?>
     suspend fun insertDrink(drink: Drink)
     suspend fun deleteDrink(drink: Drink)
@@ -36,7 +36,7 @@ class NetworkCocktailsRepository(private val cocktailsApiService: CocktailsApiSe
     override suspend fun getRandomDrink(): CocktailsApiResponse =
         cocktailsApiService.getRandomDrink()
 
-    override fun getAllDrinksStream(): Flow<Drink?> {
+    override fun getAllDrinksStream(): Flow<List<Drink>> {
         TODO("Not yet implemented")
     }
 

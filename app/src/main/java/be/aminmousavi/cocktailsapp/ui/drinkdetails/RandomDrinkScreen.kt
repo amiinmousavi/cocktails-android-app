@@ -1,6 +1,7 @@
 package be.aminmousavi.cocktailsapp.ui.drinkdetails
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -22,6 +24,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -39,6 +42,7 @@ import coil.request.ImageRequest
 @Composable
 fun RandomDrinkScreen(
     uiState: RandomDrinkUiState,
+    toggleFavorite: () -> Unit,
     refreshAction: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -49,6 +53,8 @@ fun RandomDrinkScreen(
 
         is RandomDrinkUiState.Success -> ResultScreen(
             uiState.drink,
+            uiState.isFavorite,
+            toggleFavorite,
             refreshAction = refreshAction
         )
 
@@ -62,6 +68,8 @@ fun RandomDrinkScreen(
 @Composable
 fun ResultScreen(
     drink: Drink,
+    isFavorite: Boolean,
+    toggleFavorite: () -> Unit,
     refreshAction: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -80,8 +88,10 @@ fun ResultScreen(
                     .fillMaxWidth()
                     .align(Alignment.CenterHorizontally)
             ) {
-                DrinkImage(
+                DrinkImageWithHeartIcon(
                     thumbnailUrl = drink.thumbnailUrl,
+                    isFavorite = isFavorite,
+                    onClick = toggleFavorite
                 )
             }
             drink.dateModified?.let { Paragraph("Date modified: $it") }
@@ -132,6 +142,34 @@ fun DrinkInfo(info: String? = "", modifier: Modifier = Modifier) {
         }
         Spacer(modifier = Modifier.width(8.dp))
 
+    }
+}
+
+@Composable
+fun DrinkImageWithHeartIcon(
+    thumbnailUrl: String,
+    isFavorite: Boolean,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Box(modifier = modifier) {
+        DrinkImage(thumbnailUrl = thumbnailUrl, modifier = Modifier.fillMaxSize())
+
+        val heartIcon = if (isFavorite) {
+            R.drawable.ic_heart_filled
+        } else {
+            R.drawable.ic_heart_outlined
+        }
+
+        Icon(
+            painter = painterResource(id = heartIcon),
+            contentDescription = null,
+            modifier = Modifier
+                .size(76.dp)
+                .padding(16.dp)
+                .align(Alignment.BottomEnd)
+                .clickable(onClick = onClick)
+        )
     }
 }
 

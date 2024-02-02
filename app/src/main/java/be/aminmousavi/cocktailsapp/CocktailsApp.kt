@@ -158,6 +158,7 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                     viewModel(factory = RandomDrinkViewModel.Factory)
                 RandomDrinkScreen(
                     uiState = viewModel.uiState,
+                    toggleFavorite = viewModel::toggleFavorite,
                     refreshAction = viewModel::getRandomDrink
                 )
             }

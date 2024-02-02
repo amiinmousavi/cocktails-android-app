@@ -21,7 +21,7 @@ class OfflineCocktailsRepository(private val drinkDao: DrinkDao) : CocktailsRepo
         TODO("Not yet implemented")
     }
 
-    override fun getAllDrinksStream(): Flow<Drink?> = drinkDao.getAllDrinks()
+    override fun getAllDrinksStream(): Flow<List<Drink>> = drinkDao.getAllDrinks()
 
     override fun getDrinkStream(id: String): Flow<Drink?> = drinkDao.getDrink(id)
 
