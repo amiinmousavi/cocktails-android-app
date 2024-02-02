@@ -42,7 +42,7 @@ import coil.request.ImageRequest
 @Composable
 fun RandomDrinkScreen(
     uiState: RandomDrinkUiState,
-    saveClick: () -> Unit,
+    saveItem: () -> Unit,
     refreshAction: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -54,7 +54,7 @@ fun RandomDrinkScreen(
         is RandomDrinkUiState.Success -> ResultScreen(
             uiState.drink,
             uiState.isFavorite,
-            saveClick,
+            saveItem,
             refreshAction = refreshAction
         )
 
@@ -69,7 +69,7 @@ fun RandomDrinkScreen(
 fun ResultScreen(
     drink: Drink,
     isFavorite: Boolean,
-    saveClick: () -> Unit,
+    saveItem: () -> Unit,
     refreshAction: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -91,7 +91,7 @@ fun ResultScreen(
                 DrinkImageWithHeartIcon(
                     thumbnailUrl = drink.thumbnailUrl,
                     isFavorite = isFavorite,
-                    onClick = saveClick
+                    onClick = saveItem
                 )
             }
             drink.dateModified?.let { Paragraph("Date modified: $it") }

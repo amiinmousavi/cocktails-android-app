@@ -164,7 +164,7 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                 val coroutineScope = rememberCoroutineScope()
                 RandomDrinkScreen(
                     uiState = viewModel.uiState,
-                    saveClick = {
+                    saveItem = {
                         coroutineScope.launch {
                             viewModel.saveItem()
                         }

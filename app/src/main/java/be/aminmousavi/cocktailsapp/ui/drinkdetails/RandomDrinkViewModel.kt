@@ -16,7 +16,11 @@ import java.io.IOException
 import java.lang.IllegalStateException
 
 sealed interface RandomDrinkUiState {
-    data class Success(val drink: Drink, val isFavorite: Boolean = false) : RandomDrinkUiState
+    data class Success(
+        val drink: Drink,
+        val isFavorite: Boolean = false
+    ) : RandomDrinkUiState
+
     object Error : RandomDrinkUiState
     object Loading : RandomDrinkUiState
 }
@@ -41,11 +45,13 @@ class RandomDrinkViewModel(private val cocktailsRepository: CocktailsRepository)
         }
     }
 
+    // TODO - Toggle favo toevoegen aan saveItem
     suspend fun toggleFavorite() {
         when (val currentState = uiState) {
             is RandomDrinkUiState.Success -> {
                 uiState = currentState.copy(isFavorite = !currentState.isFavorite)
             }
+
             else -> throw IllegalStateException("Can only toggle favorite for Success state")
         }
     }
@@ -55,6 +61,7 @@ class RandomDrinkViewModel(private val cocktailsRepository: CocktailsRepository)
             is RandomDrinkUiState.Success -> {
                 cocktailsRepository.insertDrink(currentState.drink)
             }
+
             else -> throw IllegalStateException("Can only save drink for Success state")
         }
     }
@@ -63,7 +70,8 @@ class RandomDrinkViewModel(private val cocktailsRepository: CocktailsRepository)
     companion object {
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
-                val application = (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as CocktailsApplication)
+                val application =
+                    (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as CocktailsApplication)
                 val cocktailsRepository = application.container.cocktailsRepository
                 RandomDrinkViewModel(cocktailsRepository = cocktailsRepository)
             }
