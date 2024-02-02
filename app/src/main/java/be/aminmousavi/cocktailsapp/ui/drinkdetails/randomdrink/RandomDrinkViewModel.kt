@@ -59,7 +59,13 @@ class RandomDrinkViewModel(private val cocktailsRepository: CocktailsRepository)
     suspend fun saveItem() {
         when (val currentState = uiState) {
             is RandomDrinkUiState.Success -> {
-                cocktailsRepository.insertDrink(currentState.drink)
+                if (currentState.isFavorite) {
+                    cocktailsRepository.deleteDrink(currentState.drink)
+                    uiState = currentState.copy(isFavorite = !currentState.isFavorite)
+                } else {
+                    cocktailsRepository.insertDrink(currentState.drink)
+                    uiState = currentState.copy(isFavorite = !currentState.isFavorite)
+                }
             }
 
             else -> throw IllegalStateException("Can only save drink for Success state")
