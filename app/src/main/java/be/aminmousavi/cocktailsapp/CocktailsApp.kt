@@ -32,6 +32,7 @@ import be.aminmousavi.cocktailsapp.ui.drinkdetails.randomdrink.RandomDrinkScreen
 import be.aminmousavi.cocktailsapp.ui.drinkdetails.randomdrink.RandomDrinkViewModel
 import be.aminmousavi.cocktailsapp.ui.drinks.cocktails.CocktailsScreen
 import be.aminmousavi.cocktailsapp.ui.drinks.cocktails.CocktailsViewModel
+import be.aminmousavi.cocktailsapp.ui.drinks.favorites.FavoritesScreen
 import be.aminmousavi.cocktailsapp.ui.drinks.nonalcoholic.NonAlcoholicDrinksScreen
 import be.aminmousavi.cocktailsapp.ui.drinks.nonalcoholic.NonAlcoholicDrinksViewModel
 import be.aminmousavi.cocktailsapp.ui.drinks.shake.ShakeScreen
@@ -76,7 +77,8 @@ enum class CocktailsScreen(@StringRes val title: Int) {
     RandomDrink(title = R.string.random_drink),
     Shake(title = R.string.shake),
     Cocktail(title = R.string.cocktail),
-    Details(title = R.string.details)
+    Details(title = R.string.details),
+    Favorites(title = R.string.favorites)
 }
 
 @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
@@ -117,6 +119,10 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
 
                             CocktailsScreen.RandomDrink.title -> {
                                 navController.navigate(CocktailsScreen.RandomDrink.name)
+                            }
+
+                            CocktailsScreen.Favorites.title -> {
+                                navController.navigate(CocktailsScreen.Favorites.name)
                             }
                         }
                     }
@@ -177,6 +183,10 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                 DetailsScreen(
 
                 )
+            }
+
+            composable(route = CocktailsScreen.Favorites.name) {
+                FavoritesScreen()
             }
         }
     }

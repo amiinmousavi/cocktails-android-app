@@ -34,5 +34,10 @@ object DataUI {
             backgroundColorResId = R.color.light_gray,
             route = "cocktail"
         ),
+        ClickableCardOption(
+            labelResId = R.string.favorites,
+            backgroundColorResId = R.color.light_blue,
+            route = "favorites"
+        ),
     )
 }
