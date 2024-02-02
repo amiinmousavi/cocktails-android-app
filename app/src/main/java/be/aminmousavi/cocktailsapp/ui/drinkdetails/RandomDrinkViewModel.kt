@@ -54,8 +54,8 @@ class RandomDrinkViewModel(private val cocktailsRepository: CocktailsRepository)
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val application = (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as CocktailsApplication)
-                val drinksRepository = application.container.cocktailsRepository
-                RandomDrinkViewModel(cocktailsRepository = drinksRepository)
+                val cocktailsRepository = application.container.cocktailsRepository
+                RandomDrinkViewModel(cocktailsRepository = cocktailsRepository)
             }
         }
     }
