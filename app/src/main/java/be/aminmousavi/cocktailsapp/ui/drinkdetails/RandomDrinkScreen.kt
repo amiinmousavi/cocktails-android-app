@@ -141,7 +141,6 @@ fun DrinkInfo(info: String? = "", modifier: Modifier = Modifier) {
             )
         }
         Spacer(modifier = Modifier.width(8.dp))
-
     }
 }
 
