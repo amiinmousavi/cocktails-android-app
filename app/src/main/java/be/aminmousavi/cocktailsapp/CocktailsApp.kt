@@ -33,6 +33,7 @@ import be.aminmousavi.cocktailsapp.ui.drinkdetails.randomdrink.RandomDrinkViewMo
 import be.aminmousavi.cocktailsapp.ui.drinks.cocktails.CocktailsScreen
 import be.aminmousavi.cocktailsapp.ui.drinks.cocktails.CocktailsViewModel
 import be.aminmousavi.cocktailsapp.ui.drinks.favorites.FavoritesScreen
+import be.aminmousavi.cocktailsapp.ui.drinks.favorites.FavoritesViewModel
 import be.aminmousavi.cocktailsapp.ui.drinks.nonalcoholic.NonAlcoholicDrinksScreen
 import be.aminmousavi.cocktailsapp.ui.drinks.nonalcoholic.NonAlcoholicDrinksViewModel
 import be.aminmousavi.cocktailsapp.ui.drinks.shake.ShakeScreen
@@ -186,7 +187,10 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
             }
 
             composable(route = CocktailsScreen.Favorites.name) {
-                FavoritesScreen()
+                val viewModel: FavoritesViewModel =
+                    viewModel(factory = FavoritesViewModel.Factory)
+//                val coroutineScope = rememberCoroutineScope()
+                FavoritesScreen(viewModel = viewModel)
             }
         }
     }
