@@ -11,13 +11,14 @@ import be.aminmousavi.cocktailsapp.ui.components.GridScreen
 
 @Composable
 fun FavoritesScreen(
+    navigateToDrinkEntry: (String) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: FavoritesViewModel = viewModel()
 ) {
     val favoritesUiState by viewModel.favoritesUiState.collectAsState()
 //    FavoritesBody(drinkList = favoritesUiState.drinkList)
 
-    GridScreen(favoritesUiState.drinkList, {})
+    GridScreen(favoritesUiState.drinkList, onClickableCardItem = navigateToDrinkEntry)
 }
 
 //@Composable

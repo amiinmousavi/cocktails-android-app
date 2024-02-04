@@ -190,7 +190,10 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
                 val viewModel: FavoritesViewModel =
                     viewModel(factory = FavoritesViewModel.Factory)
 //                val coroutineScope = rememberCoroutineScope()
-                FavoritesScreen(viewModel = viewModel)
+                FavoritesScreen(
+                    viewModel = viewModel,
+                    // TODO (fix navigation)
+                    navigateToDrinkEntry = { navController.navigate("${CocktailsScreen.Details.name}/${it}") })
             }
         }
     }
