@@ -36,9 +36,14 @@ import be.aminmousavi.cocktailsapp.ui.components.HeadingText
 import be.aminmousavi.cocktailsapp.ui.components.LoadingScreen
 import be.aminmousavi.cocktailsapp.ui.components.Paragraph
 import be.aminmousavi.cocktailsapp.ui.components.SubHeadingText
+import be.aminmousavi.cocktailsapp.ui.navigation.NavigationDestination
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 
+object RandomDrinkDestination : NavigationDestination {
+    override val route = "random_drink"
+    override val titleRes = R.string.random_drink
+}
 @Composable
 fun RandomDrinkScreen(
     uiState: RandomDrinkUiState,

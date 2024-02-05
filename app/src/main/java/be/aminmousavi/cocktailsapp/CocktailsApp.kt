@@ -30,8 +30,8 @@ import be.aminmousavi.cocktailsapp.data.DataUI
 import be.aminmousavi.cocktailsapp.ui.drinkdetails.details.DetailsScreen
 import be.aminmousavi.cocktailsapp.ui.drinkdetails.randomdrink.RandomDrinkScreen
 import be.aminmousavi.cocktailsapp.ui.drinkdetails.randomdrink.RandomDrinkViewModel
-import be.aminmousavi.cocktailsapp.ui.drinks.cocktails.CocktailsScreen
-import be.aminmousavi.cocktailsapp.ui.drinks.cocktails.CocktailsViewModel
+import be.aminmousavi.cocktailsapp.ui.drinks.cocktails.CocktailScreen
+import be.aminmousavi.cocktailsapp.ui.drinks.cocktails.CocktailViewModel
 import be.aminmousavi.cocktailsapp.ui.drinks.favorites.FavoritesScreen
 import be.aminmousavi.cocktailsapp.ui.drinks.favorites.FavoritesViewModel
 import be.aminmousavi.cocktailsapp.ui.drinks.nonalcoholic.NonAlcoholicDrinksScreen
@@ -154,9 +154,9 @@ fun CocktailsApp(navController: NavHostController = rememberNavController()) {
             }
 
             composable(route = CocktailsScreen.Cocktail.name) {
-                val viewModel: CocktailsViewModel =
-                    viewModel(factory = CocktailsViewModel.Factory)
-                CocktailsScreen(
+                val viewModel: CocktailViewModel =
+                    viewModel(factory = CocktailViewModel.Factory)
+                CocktailScreen(
                     uiState = viewModel.uiState,
                     refreshAction = viewModel::getCocktails,
                     onClickableCardItem = { drinkId ->

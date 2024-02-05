@@ -6,9 +6,15 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
+import be.aminmousavi.cocktailsapp.R
 import be.aminmousavi.cocktailsapp.model.Drink
 import be.aminmousavi.cocktailsapp.ui.components.GridScreen
+import be.aminmousavi.cocktailsapp.ui.navigation.NavigationDestination
 
+object FavoritesDestination : NavigationDestination {
+    override val route = "favorites"
+    override val titleRes = R.string.favorites
+}
 @Composable
 fun FavoritesScreen(
     navigateToDrinkEntry: (String) -> Unit,

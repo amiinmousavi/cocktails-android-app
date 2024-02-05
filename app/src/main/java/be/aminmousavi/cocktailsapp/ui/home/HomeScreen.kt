@@ -22,10 +22,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import be.aminmousavi.cocktailsapp.R
 import be.aminmousavi.cocktailsapp.data.DataUI
 import be.aminmousavi.cocktailsapp.ui.theme.CocktailsAppTheme
 import be.aminmousavi.cocktailsapp.ui.components.Logo
+import be.aminmousavi.cocktailsapp.ui.navigation.NavigationDestination
 
+object HomeDestination : NavigationDestination {
+    override val route = "home"
+    override val titleRes  = R.string.app_name
+}
 @Composable
 fun HomeScreen(
     clickableCardOptions: List<DataUI.ClickableCardOption>,
